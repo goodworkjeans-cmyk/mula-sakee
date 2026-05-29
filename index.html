@@ -611,13 +611,31 @@ topBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}))
   var ctrl=document.getElementById('musicCtrl');
   var label=ctrl.querySelector('.mc-icon');
   var playing=false;
-  bgm.src='https://raw.githubusercontent.com/goodworkjeans-cmyk/mula-sakee/main/bgm.mp3';
-  bgm.muted=true;
-  bgm.play().then(function(){bgm.muted=false;playing=true;ctrl.classList.add('playing');label.style.animation='mcSpin 3s linear infinite';}).catch(function(){});
+  var url='https://raw.githubusercontent.com/goodworkjeans-cmyk/mula-sakee/main/bgm.mp3';
+  bgm.src=url;
+  bgm.addEventListener('error',function(){label.textContent='加载失败'});
+  bgm.addEventListener('canplaythrough',function(){
+    bgm.muted=true;
+    bgm.play().then(function(){
+      bgm.muted=false;playing=true;
+      ctrl.classList.add('playing');label.style.animation='mcSpin 3s linear infinite';
+    }).catch(function(e){label.textContent='播放失败';console.log(e)});
+  });
   ctrl.addEventListener('click',function(e){
     e.stopPropagation();
-    if(playing){bgm.pause();ctrl.classList.remove('playing');label.style.animation='none';playing=false;}
-    else{bgm.muted=true;bgm.play().then(function(){bgm.muted=false;playing=true;ctrl.classList.add('playing');label.style.animation='mcSpin 3s linear infinite';}).catch(function(){});}
+    if(playing){
+      bgm.pause();ctrl.classList.remove('playing');label.style.animation='none';playing=false;
+      label.textContent='已暂停';
+    }else if(!playing && bgm.readyState>=2){
+      bgm.muted=true;bgm.play().then(function(){
+        bgm.muted=false;playing=true;
+        ctrl.classList.add('playing');label.style.animation='mcSpin 3s linear infinite';
+        label.textContent='云飞扬';
+      }).catch(function(e){label.textContent='播放失败';console.log(e)});
+    }else{
+      label.textContent='加载中';
+      bgm.load();
+    }
   });
 })();
 </script>
