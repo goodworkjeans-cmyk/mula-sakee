@@ -611,7 +611,7 @@ topBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}))
   var ctrl=document.getElementById('musicCtrl');
   var label=ctrl.querySelector('.mc-icon');
   var playing=false;
-  bgm.src='bgm.mp3';
+  bgm.src='https://raw.githubusercontent.com/goodworkjeans-cmyk/mula-sakee/main/bgm.mp3';
   bgm.muted=true;
   bgm.play().then(function(){bgm.muted=false;playing=true;ctrl.classList.add('playing');label.style.animation='mcSpin 3s linear infinite';}).catch(function(){});
   ctrl.addEventListener('click',function(e){
