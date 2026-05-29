@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MULA SAKEE — 天上的流派</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700;900&display=swap');
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --purple-deep:#4c1d95;--purple:#7c3aed;--purple-light:#a855f7;
+    --pink:#c084fc;--pink-light:#e9d5ff;
+    --bg:#07040d;--card:#120e1a;--card-hover:#181325;
+    --text:#f3f0ff;--text-dim:#b8add4;--accent:#a855f7
+  }
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Noto Sans SC',sans-serif;background:var(--bg);
+    color:var(--text);line-height:1.6;overflow-x:hidden
+  }
+  body::before{
+    content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:radial-gradient(ellipse at 20% 20%,rgba(124,58,237,.08) 0%,transparent 50%),
+               radial-gradient(ellipse at 80% 60%,rgba(192,132,252,.06) 0%,transparent 50%),
+               radial-gradient(ellipse at 50% 100%,rgba(168,85,247,.05) 0%,transparent 40%)
+  }
+
+  /* ─── NAV ─── */
+  nav{
+    position:fixed;top:0;width:100%;z-index:100;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:1rem 2rem;
+    background:rgba(12,8,20,.88);backdrop-filter:blur(16px);
+    border-bottom:1px solid rgba(168,85,247,.25);
+    box-shadow:0 4px 24px rgba(124,58,237,.1)
+  }
+  .nav-logo{
+    font-size:1.4rem;font-weight:900;letter-spacing:2px;
+    background:linear-gradient(135deg,#c084fc,#a855f7,#7c3aed);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent
+  }
+  .nav-links{display:flex;gap:2rem;list-style:none}
+  .nav-links a{
+    color:var(--text-dim);text-decoration:none;font-size:.9rem;
+    transition:color .3s;position:relative
+  }
+  .nav-links a::after{
+    content:'';position:absolute;left:0;bottom:-4px;
+    width:0;height:2px;
+    background:linear-gradient(90deg,var(--purple-light),var(--pink));
+    transition:width .3s
+  }
+  .nav-links a:hover{color:var(--pink-light)}
+  .nav-links a:hover::after{width:100%}
+
+  /* ─── HERO ─── */
+  .hero{
+    height:100vh;display:flex;flex-direction:column;
+    justify-content:center;align-items:center;text-align:center;
+    position:relative;overflow:hidden;
+    background:radial-gradient(ellipse at 50% 40%,rgba(168,85,247,.18) 0%,transparent 60%),
+               radial-gradient(ellipse at 20% 80%,rgba(192,132,252,.1) 0%,transparent 50%),
+               radial-gradient(ellipse at 80% 20%,rgba(124,58,237,.12) 0%,transparent 50%)
+  }
+  .hero-bg-img{
+    position:absolute;inset:0;z-index:0;
+    background:url('images/v2-8f8edbcfaae1db2dd4f1340a9b858719_r.jpg') center/cover no-repeat;
+    opacity:.22;filter:blur(2px) brightness(.5) saturate(1.3)
+  }
+  .hero-overlay{
+    position:absolute;inset:0;z-index:0;
+    background:linear-gradient(to bottom,rgba(7,4,13,.65) 0%,rgba(30,10,60,.5) 40%,rgba(7,4,13,.88) 100%)
+  }
+  .hero-stars{
+    content:'';position:absolute;inset:0;z-index:0;
+    background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="30" r="0.6" fill="%23a855f7" opacity="0.25"/><circle cx="80" cy="70" r="0.9" fill="%23c084fc" opacity="0.18"/><circle cx="50" cy="20" r="0.4" fill="%23c084fc" opacity="0.35"/><circle cx="65" cy="85" r="0.7" fill="%237c3aed" opacity="0.2"/><circle cx="10" cy="60" r="0.5" fill="%23a855f7" opacity="0.28"/><circle cx="90" cy="15" r="0.6" fill="%23d8b4fe" opacity="0.2"/><circle cx="35" cy="75" r="0.8" fill="%23c084fc" opacity="0.15"/><circle cx="70" cy="40" r="0.5" fill="%23a855f7" opacity="0.22"/></svg>');
+    background-size:200px
+  }
+  .hero-content{position:relative;z-index:1}
+  .hero-tag{
+    font-size:.85rem;letter-spacing:5px;color:var(--pink);
+    text-transform:uppercase;margin-bottom:1rem;
+    text-shadow:0 0 20px rgba(192,132,252,.4)
+  }
+  .hero h1{
+    font-size:clamp(4rem,10vw,8rem);font-weight:900;
+    letter-spacing:-2px;line-height:1;
+    background:linear-gradient(180deg,#fff 20%,#e9d5ff 45%,#c084fc 75%,#a855f7);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    filter:drop-shadow(0 4px 20px rgba(168,85,247,.3))
+  }
+  .hero-sub{
+    margin-top:1.5rem;font-size:1.2rem;letter-spacing:3px;
+    background:linear-gradient(90deg,#c084fc,#a855f7);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent
+  }
+  .hero-release{
+    margin-top:2.5rem;display:inline-flex;align-items:center;gap:.8rem;
+    padding:.6rem 1.8rem;border-radius:50px;
+    background:linear-gradient(135deg,rgba(124,58,237,.25),rgba(192,132,252,.15));
+    border:1px solid rgba(192,132,252,.35);
+    backdrop-filter:blur(8px);
+    box-shadow:0 0 30px rgba(168,85,247,.15);
+    animation:heroPulse 3s ease-in-out infinite
+  }
+  .hero-release .icon{font-size:1.3rem}
+  .hero-release .text{
+    font-size:.85rem;letter-spacing:2px;font-weight:700;
+    background:linear-gradient(90deg,#c084fc,#e9d5ff);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent
+  }
+  .hero-release .badge{
+    font-size:.6rem;letter-spacing:2px;padding:.2rem .7rem;
+    background:linear-gradient(135deg,#a855f7,#7c3aed);border-radius:20px;
+    color:#fff;font-weight:700;text-transform:uppercase
+  }
+  @keyframes heroPulse{0%,100%{box-shadow:0 0 20px rgba(168,85,247,.15)}50%{box-shadow:0 0 40px rgba(168,85,247,.35)}}
+  .scroll-hint{position:absolute;bottom:2rem;z-index:1;animation:bounce 2s infinite}
+  .scroll-hint span{font-size:.75rem;color:var(--pink);letter-spacing:3px;opacity:.7}
+  @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+  @keyframes mcSpin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+
+  /* ─── FLOATING ACTIONS ─── */
+  .float-actions{position:fixed;bottom:2rem;right:2rem;z-index:99;display:flex;flex-direction:column;gap:.75rem}
+  .float-btn{
+    width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;font-size:1.3rem;
+    transition:all .3s;box-shadow:0 4px 16px rgba(0,0,0,.4)
+  }
+  .float-btn:hover{transform:scale(1.1)}
+
+  /* ─── MUSIC CONTROL ─── */
+  .music-ctrl{
+    position:fixed;bottom:2rem;left:2rem;z-index:99;
+    display:flex;align-items:center;gap:.6rem;
+    padding:.5rem .5rem .5rem 1rem;
+    border-radius:30px;border:none;cursor:pointer;
+    background:rgba(12,8,20,.8);backdrop-filter:blur(12px);
+    border:1px solid rgba(168,85,247,.3);
+    color:var(--text-dim);font-size:.75rem;letter-spacing:1px;
+    transition:all .3s;box-shadow:0 4px 16px rgba(0,0,0,.4)
+  }
+  .music-ctrl:hover{border-color:var(--pink);color:var(--pink-light);box-shadow:0 4px 24px rgba(168,85,247,.2)}
+  .music-ctrl .mc-icon{
+    width:36px;height:36px;border-radius:50%;
+    background:linear-gradient(135deg,var(--purple-light),var(--pink));
+    display:flex;align-items:center;justify-content:center;font-size:1rem;
+    flex-shrink:0;transition:all .3s
+  }
+  .music-ctrl.playing .mc-icon{animation:mcSpin 3s linear infinite}
+  .float-top{opacity:0;pointer-events:none}
+  .float-top.show{opacity:1;pointer-events:auto}
+
+  /* ─── SECTIONS ─── */
+  section{padding:6rem 2rem;max-width:1100px;margin:0 auto;position:relative}
+  .section-title{
+    font-size:2.5rem;font-weight:900;margin-bottom:3rem;
+    letter-spacing:-1px;display:flex;align-items:center;gap:1rem;
+    background:linear-gradient(135deg,#f3f0ff,#c084fc);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent
+  }
+  .section-title span{
+    width:48px;height:4px;
+    background:linear-gradient(90deg,var(--purple-light),var(--pink));
+    display:inline-block;border-radius:2px;box-shadow:0 0 12px rgba(168,85,247,.4)
+  }
+  .reveal{opacity:0;transform:translateY(40px);transition:all .6s ease}
+  .reveal.show{opacity:1;transform:translateY(0)}
+
+  /* ─── BIO ─── */
+  .bio-grid{display:grid;grid-template-columns:380px 1fr;gap:3rem;align-items:start}
+  .bio-photo{
+    width:100%;border-radius:20px;
+    border:2px solid rgba(168,85,247,.4);
+    box-shadow:0 0 40px rgba(168,85,247,.25),0 0 80px rgba(192,132,252,.12);
+    transition:transform .4s,box-shadow .4s
+  }
+  .bio-photo:hover{transform:scale(1.02);box-shadow:0 0 60px rgba(168,85,247,.4),0 0 100px rgba(192,132,252,.2)}
+  .bio-right{display:flex;flex-direction:column;gap:1.5rem}
+  .bio-card{
+    background:linear-gradient(135deg,rgba(30,15,55,.6),rgba(18,14,26,.9));
+    border:1px solid rgba(168,85,247,.25);border-radius:16px;padding:2rem;
+    backdrop-filter:blur(8px);transition:border-color .3s,box-shadow .3s
+  }
+  .bio-card:hover{border-color:rgba(192,132,252,.45);box-shadow:0 0 30px rgba(124,58,237,.12)}
+  .bio-card h3{
+    background:linear-gradient(90deg,#c084fc,#a855f7);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    font-size:1.1rem;margin-bottom:1rem;letter-spacing:1px
+  }
+  .bio-card p{color:var(--text-dim);font-size:.95rem;line-height:1.8}
+  .bio-card strong{color:var(--pink-light)}
+  .info-table{width:100%;border-collapse:collapse}
+  .info-table td{padding:.7rem 0;border-bottom:1px solid rgba(168,85,247,.12);font-size:.9rem}
+  .info-table td:first-child{color:var(--pink);width:30%;font-weight:700}
+  .info-table td:last-child{color:var(--text-dim)}
+
+  /* ─── TIMELINE ─── */
+  .timeline{position:relative;padding-left:2.5rem}
+  .timeline::before{
+    content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;
+    background:linear-gradient(to bottom,var(--purple-light),var(--pink),var(--purple-light))
+  }
+  .tl-item{position:relative;margin-bottom:2.5rem;padding-left:1.5rem}
+  .tl-item::before{
+    content:'';position:absolute;left:-2.5rem;top:6px;
+    width:18px;height:18px;border-radius:50%;
+    background:linear-gradient(135deg,var(--purple-light),var(--pink));
+    border:3px solid var(--bg);box-shadow:0 0 12px rgba(168,85,247,.4)
+  }
+  .tl-year{font-size:.8rem;color:var(--pink);letter-spacing:3px;font-weight:700}
+  .tl-title{font-size:1.1rem;font-weight:700;margin:.2rem 0}
+  .tl-desc{font-size:.85rem;color:var(--text-dim);line-height:1.6}
+
+  /* ─── ALBUMS ─── */
+  .albums-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:2rem
+  }
+  .album-card{
+    background:linear-gradient(160deg,rgba(30,15,55,.5),rgba(14,10,22,.95));
+    border:1px solid rgba(168,85,247,.2);border-radius:20px;overflow:hidden;
+    position:relative;
+    transition:transform .3s,border-color .3s,box-shadow .3s
+  }
+  .album-card:hover{transform:translateY(-6px);border-color:rgba(192,132,252,.5);box-shadow:0 8px 40px rgba(124,58,237,.2)}
+  #albums{padding-top:4rem;padding-bottom:4rem}
+  #albums .section-title{font-size:2rem;margin-bottom:2rem}
+  .album-inner{padding:1.2rem 1.5rem;display:flex;flex-direction:column;flex:1}
+  /* ── Cover placeholder / actual cover ── */
+  .album-cover-wrap{
+    width:auto;aspect-ratio:1/1;overflow:hidden;position:relative;
+    margin:1.5rem 1.5rem 0;border-radius:14px
+  }
+  .album-cover-wrap img{
+    width:100%;height:100%;object-fit:cover;display:block
+  }
+  .cover-placeholder{
+    width:100%;height:100%;display:flex;
+    align-items:center;justify-content:center;font-size:3rem;font-weight:900;
+    letter-spacing:4px;position:relative;overflow:hidden
+  }
+  .cover-placeholder .initials{position:relative;z-index:1;text-shadow:0 2px 20px rgba(0,0,0,.5)}
+  /* Each album gets unique gradient */
+  .cp-1{background:linear-gradient(135deg,#1a0533,#4c1d95,#7c3aed)}
+  .cp-2{background:linear-gradient(135deg,#0d0221,#2d0a5e,#6d28d9)}
+  .cp-3{background:linear-gradient(135deg,#1c0226,#4a0a4e,#a21caf)}
+  .cp-4{background:linear-gradient(135deg,#0f0124,#3b0764,#7c3aed)}
+  .cp-5{background:linear-gradient(135deg,#120127,#4c1d95,#9333ea)}
+  .cp-6{background:linear-gradient(135deg,#0a0018,#2e1065,#7c3aed)}
+  .cp-1::after,.cp-2::after,.cp-3::after,.cp-4::after,.cp-5::after,.cp-6::after{
+    content:'';position:absolute;top:-50%;right:-50%;width:200%;height:200%;
+    background:radial-gradient(circle at 30% 40%,rgba(255,255,255,.06) 0%,transparent 50%);
+    pointer-events:none
+  }
+  .album-year{font-size:.75rem;color:var(--pink);letter-spacing:3px;margin-top:.6rem}
+  .album-name{
+    font-size:1.2rem;font-weight:900;margin:.3rem 0;
+    background:linear-gradient(135deg,#f3f0ff,#d8b4fe);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent
+  }
+  .album-type{
+    display:inline-block;font-size:.6rem;
+    background:rgba(168,85,247,.2);color:var(--pink);
+    padding:.18rem .65rem;border-radius:20px;
+    letter-spacing:1px;margin-bottom:.5rem;border:1px solid rgba(168,85,247,.25);
+    align-self:flex-start
+  }
+  .album-desc{font-size:.78rem;color:var(--text-dim);line-height:1.55;margin-bottom:.5rem}
+  .album-tracks{list-style:none}
+  .album-tracks li{padding:.25rem 0;font-size:.78rem;color:var(--text-dim);border-bottom:1px solid rgba(168,85,247,.08)}
+  .album-tracks li::before{content:'♫';margin-right:.5rem;color:var(--pink);font-size:.65rem}
+
+  /* ─── LYRICS ─── */
+  .lyrics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+  .lyric-card{
+    padding:2rem;border-radius:20px;position:relative;
+    background:linear-gradient(160deg,rgba(30,15,55,.5),rgba(14,10,22,.95));
+    border:1px solid rgba(168,85,247,.15);
+    transition:all .3s
+  }
+  .lyric-card:hover{transform:translateY(-4px);border-color:rgba(192,132,252,.4);box-shadow:0 6px 30px rgba(124,58,237,.15)}
+  .lyric-quote{font-size:2.5rem;line-height:1;color:var(--pink);opacity:.3;margin-bottom:-1rem}
+  .lyric-text{font-style:italic;font-size:.95rem;line-height:1.8;color:var(--text-dim);padding:.5rem 0}
+  .lyric-source{font-size:.75rem;color:var(--pink);letter-spacing:1px;font-style:normal;margin-top:.5rem}
+
+  /* ─── TOUR ─── */
+  .tour-list{display:flex;flex-direction:column;gap:.9rem}
+  .tour-item{
+    display:flex;justify-content:space-between;align-items:center;
+    background:linear-gradient(135deg,rgba(30,15,55,.4),rgba(14,10,22,.9));
+    border:1px solid rgba(168,85,247,.18);
+    border-left:3px solid rgba(168,85,247,.35);
+    border-radius:12px;padding:1.2rem 1.5rem;
+    transition:all .3s
+  }
+  .tour-item:hover{
+    border-color:rgba(192,132,252,.5);border-left-color:var(--pink);
+    box-shadow:0 4px 24px rgba(124,58,237,.15);
+    background:linear-gradient(135deg,rgba(40,20,70,.5),rgba(18,14,26,.95))
+  }
+  .tour-city{font-weight:700;font-size:1.1rem}
+  .tour-date{color:var(--pink);font-size:.9rem;letter-spacing:1px}
+  .tour-venue{color:var(--text-dim);font-size:.85rem}
+  .tour-tag{
+    font-size:.7rem;background:linear-gradient(135deg,var(--purple-light),var(--pink));
+    color:#fff;padding:.25rem .8rem;border-radius:20px;letter-spacing:1px;font-weight:700;
+    box-shadow:0 2px 10px rgba(168,85,247,.3)
+  }
+
+  /* ─── STYLE ─── */
+  .style-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+  .style-card{
+    text-align:center;padding:2.2rem 2rem;
+    background:linear-gradient(160deg,rgba(30,15,55,.35),rgba(14,10,22,.9));
+    border:1px solid rgba(168,85,247,.15);border-radius:20px;
+    transition:transform .3s,border-color .3s,box-shadow .3s
+  }
+  .style-card:hover{transform:translateY(-4px);border-color:rgba(192,132,252,.4);box-shadow:0 6px 30px rgba(124,58,237,.15)}
+  .style-icon{font-size:2.8rem;margin-bottom:1rem}
+  .style-card h4{
+    font-size:1.1rem;margin-bottom:.5rem;
+    background:linear-gradient(90deg,#f3f0ff,#c084fc);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent
+  }
+  .style-card p{font-size:.85rem;color:var(--text-dim);line-height:1.7}
+
+  /* ─── SOCIAL ─── */
+  .social-section{text-align:center}
+  .social-grid{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:2rem}
+  .social-link{
+    display:flex;align-items:center;gap:.5rem;
+    padding:.8rem 1.5rem;border-radius:30px;text-decoration:none;
+    background:linear-gradient(135deg,rgba(30,15,55,.5),rgba(18,14,26,.9));
+    border:1px solid rgba(168,85,247,.2);
+    color:var(--text-dim);font-size:.9rem;
+    transition:all .3s
+  }
+  .social-link:hover{
+    transform:translateY(-3px);border-color:var(--pink);color:var(--pink-light);
+    box-shadow:0 4px 20px rgba(124,58,237,.2)
+  }
+  .social-link .icon{font-size:1.2rem}
+
+  /* ─── FOOTER ─── */
+  footer{
+    text-align:center;padding:4rem 2rem;
+    border-top:1px solid rgba(168,85,247,.2);
+    background:linear-gradient(to top,rgba(30,15,55,.3),transparent)
+  }
+  footer p{color:var(--text-dim);font-size:.8rem}
+  footer .tagline{
+    font-size:1.5rem;font-weight:700;margin-bottom:1rem;
+    background:linear-gradient(135deg,#c084fc,#a855f7,#7c3aed);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent
+  }
+  footer strong{color:var(--pink)}
+
+  @media(max-width:768px){
+    .nav-links{display:none}
+    .bio-grid{grid-template-columns:1fr}
+    .bio-photo{max-width:320px;margin:0 auto}
+    .albums-grid,.style-grid,.lyrics-grid{grid-template-columns:1fr}
+    .hero h1{font-size:3rem}
+    .tour-item{flex-direction:column;align-items:flex-start;gap:.4rem}
+    .social-grid{flex-direction:column;align-items:center}
+    .music-ctrl .mc-label{max-width:60px}
+    #bgmFrame{width:260px;height:160px;bottom:4.5rem}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">MULA SAKEE</div>
+  <ul class="nav-links">
+    <li><a href="#about">关于</a></li>
+    <li><a href="#albums">作品</a></li>
+    <li><a href="#tour">巡演</a></li>
+    <li><a href="#style">风格</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<header class="hero">
+  <div class="hero-bg-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-stars"></div>
+  <div class="hero-content">
+    <p class="hero-tag">Digi Ghetto · 华纳音乐</p>
+    <h1>MULA<br>SAKEE</h1>
+    <p class="hero-sub">天上的流派 · 国际视野 · 成都之光</p>
+    <div class="hero-release">
+      <span class="icon">🌐</span>
+      <span class="text">永玄大典 · 全球发行</span>
+      <span class="badge">THE OMNI ORACLE</span>
+    </div>
+  </div>
+	  <div class="scroll-hint"><span>▼ 下滑探索</span></div>
+</header>
+
+<!-- ── ABOUT ── -->
+<section id="about">
+  <h2 class="section-title reveal"><span></span> 艺人简介</h2>
+  <div class="bio-grid reveal">
+    <img class="bio-photo" src="v2-8f8edbcfaae1db2dd4f1340a9b858719_r.jpg" alt="Mula Sakee">
+    <div class="bio-right">
+      <div class="bio-card">
+        <h3>🗺️ 成长轨迹</h3>
+        <p>Mula Sakee，1997年出生于<strong>四川成都</strong>。2016年赴美国亚特兰大<strong>埃默里大学</strong>留学，在这座Trap音乐重镇深受Hip-Hop文化感染。2017年转学至日本东京<strong>庆应义塾大学</strong>，完成第一首Demo后毅然退学，不顾父母反对走上全职说唱道路。2019年共同创立<strong>Digi Ghetto</strong>，2023年签约<strong>华纳音乐</strong>，2024年由环球音乐Republic唱片发行专辑《SAINT JUICE》。曾两度登上世界顶级嘻哈音乐节 <strong>Rolling Loud</strong> 舞台，被公认为中国说唱圈最具国际视野的先锋人物。</p>
+      </div>
+      <div class="bio-card">
+        <h3>📋 基本资料</h3>
+        <table class="info-table">
+          <tr><td>本名</td><td>黄飞扬</td></tr>
+          <tr><td>出生地</td><td>四川成都</td></tr>
+          <tr><td>出生年份</td><td>1997</td></tr>
+          <tr><td>厂牌</td><td>Digi Ghetto</td></tr>
+          <tr><td>唱片公司</td><td>华纳音乐 / Republic Records</td></tr>
+          <tr><td>名字由来</td><td>源自日语 紫色 (murasaki) + 幸运数字3</td></tr>
+          <tr><td>风格</td><td>Trap · Melodic Rap · Club Banger</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TIMELINE ─── -->
+<section id="timeline">
+  <h2 class="section-title reveal"><span></span> 生涯里程碑</h2>
+  <div class="timeline reveal">
+    <div class="tl-item"><div class="tl-year">2016</div><div class="tl-title">赴美留学 · 音乐启蒙</div><div class="tl-desc">进入亚特兰大埃默里大学，在 Trap 音乐发源地深受 Hip-Hop 文化感染，开始创作。</div></div>
+    <div class="tl-item"><div class="tl-year">2017</div><div class="tl-title">转学日本 · 首支 Demo</div><div class="tl-desc">转学至东京庆应义塾大学，完成第一首 Demo 后毅然退学，全职做音乐。</div></div>
+    <div class="tl-item"><div class="tl-year">2019</div><div class="tl-title">创立 Digi Ghetto · 欧洲演出</div><div class="tl-desc">共同创立 Digi Ghetto，同年与韩国 Balming Tiger 赴欧洲三国音乐节演出。</div></div>
+    <div class="tl-item"><div class="tl-year">2020</div><div class="tl-title">首张 Mixtape《777 WAR BABII》</div><div class="tl-desc">个人首张 Mixtape，展现全能说唱能力，极具超前意识。</div></div>
+    <div class="tl-item"><div class="tl-year">2022</div><div class="tl-title">Digi Ghetto 现象级巡演</div><div class="tl-desc">团体 Mixtape 发布，多首爆款单曲，全国巡演引发现象级讨论。</div></div>
+    <div class="tl-item"><div class="tl-year">2023</div><div class="tl-title">签约华纳 · 首专《SSS》</div><div class="tl-desc">签约华纳音乐，发布首张完整专辑《SSS》，"天上的流派"风格确立。</div></div>
+    <div class="tl-item"><div class="tl-year">2023–2024</div><div class="tl-title">两登 Rolling Loud</div><div class="tl-desc">代表中国 Hip-Hop 两次登上世界顶级音乐节 Rolling Loud 舞台。</div></div>
+    <div class="tl-item"><div class="tl-year">2024</div><div class="tl-title">《SAINT JUICE》全球发行</div><div class="tl-desc">环球音乐 Republic Records 发行专辑《SAINT JUICE》，开启全国巡演。</div></div>
+    <div class="tl-item"><div class="tl-year">2025</div><div class="tl-title">《永玄大典》现象级发布</div><div class="tl-desc">20 首全长专辑，10 分钟收藏破万，登顶热搜，创个人纪录。</div></div>
+  </div>
+</section>
+
+<!-- ── ALBUMS ── -->
+<section id="albums">
+  <h2 class="section-title reveal"><span></span> 代表专辑</h2>
+  <div class="albums-grid reveal">
+
+    <div class="album-card" style="border-color:rgba(192,132,252,.4)">
+      <div class="album-cover-wrap">
+        <img src="永玄大典.jpg" alt="永玄大典">
+      </div>
+      <div class="album-inner">
+        <p class="album-year">2025.12.07</p>
+        <h3 class="album-name">永玄大典</h3>
+        <span class="album-type">录音室专辑 · 20首</span>
+        <p class="album-desc">以"复兴华夏文明"为概念，古风帝王叙事与 Trap 交织。雾都 L4WUDU、SASI、THOME、mac ova seas 助阵。上线10分钟收藏破万，1小时评论7000+登顶热搜，刷新个人纪录。</p>
+        <ul class="album-tracks">
+          <li>玄龙兴 扫六合</li>
+          <li>HELL CARTEL (炼狱盟) ft. mac ova seas</li>
+          <li>永玄定鼎</li>
+          <li>海上钢琴师</li>
+          <li>...等 20 首</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="album-card">
+      <div class="album-cover-wrap">
+        <img src="saint juice.jpg" alt="SAINT JUICE">
+      </div>
+      <div class="album-inner">
+        <p class="album-year">2024.08.08</p>
+        <h3 class="album-name">SAINT JUICE</h3>
+        <span class="album-type">录音室专辑 · 17首</span>
+        <p class="album-desc">环球音乐 Republic Records 发行。以"穿越星尘落入凡间的圣果汁"为概念，融合多种独特元素。合作 KnowKnow、kkluv、Clutch离合、艾志恒 Asen，开启全国巡演。</p>
+        <ul class="album-tracks">
+          <li>倚天屠龙记</li>
+          <li>锁心术</li>
+          <li>太上老君炼丹炉</li>
+          <li>POP OUT / JUICE</li>
+          <li>...等 17 首</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="album-card">
+      <div class="album-cover-wrap">
+        <img src="SSS.jpg" alt="SSS">
+      </div>
+      <div class="album-inner">
+        <p class="album-year">2023.03.20</p>
+        <h3 class="album-name">SSS</h3>
+        <span class="album-type">录音室专辑 · 16首</span>
+        <p class="album-desc">签约华纳音乐后首张正式专辑。以星际穿越、时空跳跃为叙事框架，被乐迷称为"天上的流派"。编曲大量运用弦乐，Trap 碎拍 Hi-Hat 处理在中文说唱界独树一帜。</p>
+        <ul class="album-tracks">
+          <li>ATHENA (先行曲)</li>
+          <li>长坂坡</li>
+          <li>启示录</li>
+          <li>HALLOWEEN FREESTYLE ft. 艾志恒 Asen</li>
+          <li>...等 16 首</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="album-card">
+      <div class="album-cover-wrap">
+        <img src="777.jpg" alt="777 WAR BABII">
+      </div>
+      <div class="album-inner">
+        <p class="album-year">2020.12.02</p>
+        <h3 class="album-name">777 WAR BABII</h3>
+        <span class="album-type">Mixtape · 9首</span>
+        <p class="album-desc">首张个人 Mixtape，历时两年打磨。"777"源自21岁灵感，"WAR BABii"意为为战斗而生。既有 Bow Bow Bangers 也有氛围感作品，初试啼声即展露全能说唱实力。</p>
+        <ul class="album-tracks">
+          <li>SORRY NOT SORRY</li>
+          <li>NO SUCKER</li>
+          <li>SLIDEEE</li>
+          <li>UGHH!!</li>
+          <li>WAR ZONE</li>
+          <li>YESSIRSKIIII</li>
+          <li>阿修罗道</li>
+          <li>777 WOES</li>
+          <li>P A I N 1997</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── LYRICS ─── -->
+<section id="lyrics">
+  <h2 class="section-title reveal"><span></span> 经典歌词</h2>
+  <div class="lyrics-grid reveal">
+    <div class="lyric-card"><div class="lyric-quote">"</div><div class="lyric-text">如果最屌的不是我们就在骗人<br>这一点 I cannot cap<br>Grind 明天醒来 Put in actions<br>Little bitch, I'm shining now</div><div class="lyric-source">—— 《闪》DIGI GHETTO</div></div>
+    <div class="lyric-card"><div class="lyric-quote">"</div><div class="lyric-text">孤扫六合 遂平八方<br>万邦来朝 重定朝纲<br>这波是屠杀 让你们挂彩<br>出道即巅峰 Drip till I die</div><div class="lyric-source">—— 《玄龙兴 扫六合》</div></div>
+    <div class="lyric-card"><div class="lyric-quote">"</div><div class="lyric-text">他们一直在狗叫<br>没歌词写 建议你去下个有道<br>你们耍不来 就让我们来<br>哥们儿的傲慢 你们不明白</div><div class="lyric-source">—— 《闪》DIGI GHETTO</div></div>
+  </div>
+</section>
+
+<!-- ── TOUR ── -->
+<section id="tour">
+  <h2 class="section-title reveal"><span></span> 2026 全国巡演</h2>
+  <p style="color:var(--text-dim);margin-bottom:2rem;">「永玄大典」Tour — 多城火热进行中</p>
+  <div class="tour-list reveal">
+    <div class="tour-item"><div><div class="tour-city">广州</div><div class="tour-venue">MAO Livehouse 中大店</div></div><div><span class="tour-tag">5.16</span><span class="tour-date" style="margin-left:.5rem;">已售罄</span></div></div>
+    <div class="tour-item"><div><div class="tour-city">北京</div><div class="tour-venue">蛙厂 RMMF</div></div><div><span class="tour-tag">5.18</span><span class="tour-date" style="margin-left:.5rem;">已结束</span></div></div>
+    <div class="tour-item"><div><div class="tour-city">杭州</div><div class="tour-venue">LiveShop Uni 由你现场</div></div><div><span class="tour-tag">5.22</span><span class="tour-date" style="margin-left:.5rem;">已结束</span></div></div>
+    <div class="tour-item"><div><div class="tour-city">上海</div><div class="tour-venue">瓦肆 VAS est</div></div><div><span class="tour-tag">5.23</span><span class="tour-date" style="margin-left:.5rem;">已结束</span></div></div>
+    <div class="tour-item" style="border-color:var(--accent);"><div><div class="tour-city">青岛</div><div class="tour-venue">凤凰之声大剧院</div></div><div><span class="tour-tag">5.30</span><span class="tour-date" style="margin-left:.5rem;color:#fff;">明日开演</span></div></div>
+    <div class="tour-item"><div><div class="tour-city">北京</div><div class="tour-venue">蛙厂 RMMF</div></div><div><span class="tour-tag">6.12</span><span class="tour-date" style="margin-left:.5rem;">¥298起</span></div></div>
+    <div class="tour-item"><div><div class="tour-city">厦门</div><div class="tour-venue">福馆 Full House</div></div><div><span class="tour-tag">6.27</span><span class="tour-date" style="margin-left:.5rem;">¥298起</span></div></div>
+    <div class="tour-item"><div><div class="tour-city">深圳</div><div class="tour-venue">MAO Livehouse 深圳</div></div><div><span class="tour-tag">6.28</span><span class="tour-date" style="margin-left:.5rem;">¥298起</span></div></div>
+  </div>
+</section>
+
+<!-- ── STYLE ── -->
+<section id="style">
+  <h2 class="section-title reveal"><span></span> 音乐风格</h2>
+  <div class="style-grid reveal">
+    <div class="style-card"><div class="style-icon">🌌</div><h4>天上的流派</h4><p>Hi-Hat 节拍碎化处理搭配轻盈咬字，营造独特悬浮与慵懒听感，开创独树一帜的风格。</p></div>
+    <div class="style-card"><div class="style-icon">🌍</div><h4>国际视野</h4><p>中美日三国文化交融，兼具欧美纯正 Vibe 与东方表达，两度登上 Rolling Loud 舞台。</p></div>
+    <div class="style-card"><div class="style-icon">⚡</div><h4>极致反差</h4><p>既能产出深入魂魄的旋律，也能驾驭爆发力十足的 Club Banger，动静之间自由切换。</p></div>
+  </div>
+</section>
+
+<!-- ── SOCIAL ── -->
+<section class="social-section" id="social">
+  <h2 class="section-title reveal" style="justify-content:center;"><span></span> 聆听更多</h2>
+  <div class="social-grid reveal">
+    <a class="social-link" href="https://music.163.com/#/artist?id=48751673" target="_blank" rel="noopener"><span class="icon">🎵</span> 网易云音乐</a>
+    <a class="social-link" href="https://weibo.cn/u/6406011401" target="_blank" rel="noopener"><span class="icon">📱</span> 微博</a>
+    <a class="social-link" href="https://www.instagram.com/mulasakee/" target="_blank" rel="noopener"><span class="icon">📷</span> Instagram</a>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p class="tagline">「 MULA SAKEE — 天上的流派 」</p>
+  <p>Digi Ghetto · 华纳音乐 · Republic Records</p>
+  <p style="margin-top:1rem;opacity:.5;">Mula Sakee © 2026</p>
+  <p style="margin-top:1.5rem;font-size:1.1rem;font-weight:700;letter-spacing:2px;background:linear-gradient(90deg,#c084fc,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Made by <strong style="color:#e9d5ff;-webkit-text-fill-color:#e9d5ff">Goodwork</strong> for <strong style="color:#e9d5ff;-webkit-text-fill-color:#e9d5ff">Catherine</strong></p>
+</footer>
+
+<!-- ── MUSIC CONTROL ── -->
+<audio id="bgm" loop muted></audio>
+<button class="music-ctrl" id="musicCtrl">
+  <span class="mc-icon">♫</span>
+  <span class="mc-label">云飞扬</span>
+</button>
+
+<!-- ── FLOATING BUTTONS ── -->
+<div class="float-actions">
+  <button class="float-btn float-top" id="backToTop" title="回到顶部">↑</button>
+</div>
+
+<script>
+const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('show');observer.unobserve(entry.target)}})},{threshold:.15})
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))
+
+const topBtn=document.getElementById('backToTop')
+window.addEventListener('scroll',()=>{topBtn.classList.toggle('show',window.scrollY>600)})
+topBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}))
+
+
+
+
+
+(function(){
+  var bgm=document.getElementById('bgm');
+  var ctrl=document.getElementById('musicCtrl');
+  var label=ctrl.querySelector('.mc-icon');
+  var playing=false;
+  bgm.src='云飞扬 (UP NOW)-MULA SAKEE.mp3';
+  bgm.muted=true;
+  bgm.play().then(function(){bgm.muted=false;playing=true;ctrl.classList.add('playing');label.style.animation='mcSpin 3s linear infinite';}).catch(function(){});
+  ctrl.addEventListener('click',function(e){
+    e.stopPropagation();
+    if(playing){bgm.pause();ctrl.classList.remove('playing');label.style.animation='none';playing=false;}
+    else{bgm.muted=true;bgm.play().then(function(){bgm.muted=false;playing=true;ctrl.classList.add('playing');label.style.animation='mcSpin 3s linear infinite';}).catch(function(){});}
+  });
+})();
+</script>
+
+</body>
+</html>
