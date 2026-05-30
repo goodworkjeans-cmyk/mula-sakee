@@ -157,13 +157,12 @@
   .music-ctrl.paused .mc-icon{animation-play-state:paused}
   /* Hint text above button */
   .music-hint{
-    position:fixed;bottom:calc(2rem + 90px);left:calc(2rem + 26px);z-index:98;
-    transform:translateX(calc(-50% + 4px));
-    font-size:.6rem;letter-spacing:2px;color:rgba(168,85,247,.5);
+    position:fixed;bottom:calc(2rem + 90px);left:calc(2rem + 34px);z-index:98;
+    transform:translateX(-50%);
+    font-size:.65rem;letter-spacing:2px;color:rgba(168,85,247,.5);
     line-height:1.5;pointer-events:none;text-align:center;
     animation:hintFade 2s ease 6s forwards;opacity:1
   }
-  .hint-l2{font-size:.75rem;letter-spacing:3px}
   @keyframes hintFade{to{opacity:0}}
   .float-top{opacity:0;pointer-events:none}
   .float-top.show{opacity:1;pointer-events:auto}
