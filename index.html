@@ -291,12 +291,13 @@
     padding:2rem;border-radius:20px;position:relative;
     background:linear-gradient(160deg,rgba(30,15,55,.5),rgba(14,10,22,.95));
     border:1px solid rgba(168,85,247,.15);
-    transition:all .3s
+    transition:all .3s;
+    display:flex;flex-direction:column
   }
   .lyric-card:hover{transform:translateY(-4px);border-color:rgba(192,132,252,.4);box-shadow:0 6px 30px rgba(124,58,237,.15)}
   .lyric-quote{font-size:2.5rem;line-height:1;color:var(--pink);opacity:.3;margin-bottom:-1rem}
-  .lyric-text{font-style:italic;font-size:.95rem;line-height:1.8;color:var(--text-dim);padding:.5rem 0}
-  .lyric-source{font-size:.75rem;color:var(--pink);letter-spacing:1px;font-style:normal;margin-top:.5rem}
+  .lyric-text{font-style:italic;font-size:.95rem;line-height:1.8;color:var(--text-dim);padding:.5rem 0;flex:1}
+  .lyric-source{font-size:.75rem;color:var(--pink);letter-spacing:1px;font-style:normal;margin-top:auto;padding-top:.5rem}
 
   /* ─── TOUR ─── */
   .tour-list{display:flex;flex-direction:column;gap:.9rem}
