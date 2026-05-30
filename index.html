@@ -186,19 +186,20 @@
   /* ─── BIO ─── */
   .bio-grid{display:grid;grid-template-columns:380px 1fr;gap:3rem;align-items:start}
   .bio-photo{
-    width:100%;border-radius:20px;
-    border:2px solid rgba(168,85,247,.4);
-    box-shadow:0 0 40px rgba(168,85,247,.25),0 0 80px rgba(192,132,252,.12);
-    transition:transform .4s,box-shadow .4s
+    width:100%;border-radius:16px;
+    border:1px solid rgba(168,85,247,.3);
+    box-shadow:0 0 30px rgba(124,58,237,.12),0 0 60px rgba(168,85,247,.08);
+    transition:transform .4s,box-shadow .4s,border-color .4s
   }
-  .bio-photo:hover{transform:scale(1.02);box-shadow:0 0 60px rgba(168,85,247,.4),0 0 100px rgba(192,132,252,.2)}
+  .bio-photo:hover{transform:scale(1.02);border-color:rgba(192,132,252,.5);box-shadow:0 0 40px rgba(124,58,237,.2),0 0 80px rgba(168,85,247,.15)}
   .bio-right{display:flex;flex-direction:column;gap:1.5rem}
   .bio-card{
     background:linear-gradient(135deg,rgba(30,15,55,.6),rgba(18,14,26,.9));
     border:1px solid rgba(168,85,247,.25);border-radius:16px;padding:2rem;
-    backdrop-filter:blur(8px);transition:border-color .3s,box-shadow .3s
+    backdrop-filter:blur(8px);transition:border-color .3s,box-shadow .3s;
+    box-shadow:0 0 30px rgba(124,58,237,.12),0 0 60px rgba(168,85,247,.08)
   }
-  .bio-card:hover{border-color:rgba(192,132,252,.45);box-shadow:0 0 30px rgba(124,58,237,.12)}
+  .bio-card:hover{border-color:rgba(192,132,252,.45);box-shadow:0 0 40px rgba(124,58,237,.2),0 0 80px rgba(168,85,247,.15)}
   .bio-card h3{
     background:linear-gradient(90deg,#c084fc,#a855f7);
     -webkit-background-clip:text;-webkit-text-fill-color:transparent;
@@ -583,13 +584,12 @@
       <div class="bio-card">
         <h3>📋 基本资料</h3>
         <table class="info-table">
-          <tr><td>本名</td><td>黄飞扬</td></tr>
+          <tr><td>本名</td><td>黄菲洋</td></tr>
           <tr><td>出生地</td><td>四川成都</td></tr>
           <tr><td>出生年份</td><td>1997</td></tr>
           <tr><td>厂牌</td><td>Digi Ghetto</td></tr>
           <tr><td>唱片公司</td><td>华纳音乐 / Republic Records</td></tr>
           <tr><td>名字由来</td><td>源自日语 紫色 (murasaki) + 幸运数字3</td></tr>
-          <tr><td>风格</td><td>Trap · Melodic Rap · Club Banger</td></tr>
         </table>
       </div>
     </div>
