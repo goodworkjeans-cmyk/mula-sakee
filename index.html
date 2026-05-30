@@ -212,9 +212,9 @@
   .info-table td:last-child{color:var(--text-dim)}
 
   /* ─── TIMELINE ─── */
-  .timeline{position:relative;padding-left:4rem}
+  .timeline{position:relative;padding-left:3rem}
   .timeline::before{
-    content:'';position:absolute;left:24px;top:0;bottom:0;width:2px;
+    content:'';position:absolute;left:1.2rem;top:0;bottom:0;width:2px;
     background:linear-gradient(to bottom,var(--purple-light),var(--pink),var(--purple-light))
   }
   .tl-item{position:relative;margin-bottom:2.5rem;padding-left:2.5rem}
@@ -765,7 +765,7 @@
 const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('show');observer.unobserve(entry.target)}})},{threshold:.15})
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))
 const topBtn=document.getElementById('backToTop')
-window.addEventListener('scroll',()=>{topBtn.classList.toggle('show',window.scrollY>600)})
+window.addEventListener('scroll',()=>{topBtn.classList.toggle('show',window.scrollY>600)},{passive:true})
 topBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}))
 // Door + Music
 var door=document.getElementById('doorOverlay');
