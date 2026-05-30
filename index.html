@@ -607,7 +607,7 @@ topBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}))
   var ctrl=document.getElementById('musicCtrl');
   var label=ctrl.querySelector('.mc-icon');
   var playing=false;
-  var url='https://raw.githubusercontent.com/goodworkjeans-cmyk/mula-sakee/main/bgm.mp3';
+  var url='https://goodworkjeans-cmyk.github.io/mula-sakee/bgm.mp3';
   bgm.src=url;
   bgm.addEventListener('error',function(){label.textContent='加载失败'});
   bgm.addEventListener('canplaythrough',function(){
