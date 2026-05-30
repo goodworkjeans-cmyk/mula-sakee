@@ -156,29 +156,32 @@
     display:flex;align-items:center;justify-content:center;
     background:rgba(0,0,0,.35);pointer-events:none;
     transition:opacity .3s;opacity:0;z-index:2;
-    animation:mcSpinRev 8s linear infinite
+    animation:mcSpinRev 8s linear infinite;
+    font-size:1.1rem;color:rgba(200,150,46,.7)
   }
   .music-ctrl.playing .mc-speaker{opacity:1}
-  .music-ctrl.paused .mc-speaker{opacity:1;animation-play-state:paused}
-  /* Speaker base icon */
-  .mc-speaker::before{
-    content:'🔈';font-size:1.2rem;position:relative;z-index:1
+  .music-ctrl.paused .mc-speaker{opacity:1;animation-play-state:paused;color:rgba(200,150,46,.7)}
+  /* Simple speaker text */
+  .mc-speaker .speaker-icon{position:relative;z-index:1;line-height:1}
+  /* Sound wave arc right side */
+  .mc-speaker .wave{
+    position:absolute;right:-2px;top:50%;transform:translateY(-50%);
+    width:14px;height:14px;border:2px solid rgba(200,150,46,.5);
+    border-radius:50%;border-left-color:transparent;border-bottom-color:transparent;
+    pointer-events:none;opacity:0;transition:opacity .3s
   }
-  /* Sound waves - only when playing */
-  .music-ctrl.playing .mc-speaker::after{
-    content:'';position:absolute;width:100%;height:100%;border-radius:50%;
-    background:radial-gradient(circle at 60% 50%,transparent 45%,rgba(200,150,46,.3) 46%,transparent 48%),
-               radial-gradient(circle at 70% 50%,transparent 38%,rgba(200,150,46,.2) 39%,transparent 42%),
-               radial-gradient(circle at 80% 50%,transparent 30%,rgba(200,150,46,.1) 31%,transparent 34%);
-    pointer-events:none
+  .mc-speaker .wave.w2{right:-6px;width:18px;height:18px;border-color:rgba(200,150,46,.3);border-left-color:transparent;border-bottom-color:transparent}
+  .music-ctrl.playing .mc-speaker .wave{opacity:1}
+  /* Slash overlay */
+  .mc-speaker .slash{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    pointer-events:none;opacity:0;transition:opacity .3s
   }
-  /* Diagonal slash - only when paused */
-  .music-ctrl.paused .mc-speaker::after{
-    content:'/';display:flex;align-items:center;justify-content:center;
-    font-size:2rem;font-weight:100;color:rgba(200,150,46,.6);
-    position:absolute;inset:0;border-radius:50%;pointer-events:none;
-    background:transparent;transform:rotate(-10deg)
+  .mc-speaker .slash::before{
+    content:'/';font-size:1.8rem;font-weight:100;color:rgba(200,150,46,.5);
+    transform:rotate(-10deg)
   }
+  .music-ctrl.paused .mc-speaker .slash{opacity:1}
   .music-ctrl.playing .mc-icon{animation:mcSpin 8s linear infinite}
   .music-ctrl.paused .mc-icon{animation-play-state:paused}
   .float-top{opacity:0;pointer-events:none}
@@ -772,7 +775,12 @@
 <button class="music-ctrl" id="musicCtrl">
   <span class="mc-icon" style="position:relative">
     <img src="永玄大典.jpg" alt="永玄大典">
-    <span class="mc-speaker">🔊</span>
+    <span class="mc-speaker">
+      <span class="speaker-icon">♩</span>
+      <span class="wave"></span>
+      <span class="wave w2"></span>
+      <span class="slash"></span>
+    </span>
   </span>
 </button>
 <!-- ── FLOATING BUTTONS ── -->
