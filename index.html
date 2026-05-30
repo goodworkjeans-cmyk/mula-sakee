@@ -155,12 +155,12 @@
   .music-ctrl.paused .mc-icon{animation-play-state:paused}
   /* Hint text above button */
   .music-hint{
-    position:fixed;bottom:calc(2rem + 60px);left:2rem;z-index:98;
-    font-size:.65rem;letter-spacing:2px;color:rgba(168,85,247,.5);
-    white-space:nowrap;pointer-events:none;
-    animation:hintFade 5s ease forwards
+    position:fixed;bottom:calc(2rem + 90px);left:2rem;z-index:98;
+    font-size:.6rem;letter-spacing:2px;color:rgba(168,85,247,.5);
+    line-height:1.5;pointer-events:none;
+    animation:hintFade 2s ease 6s forwards;opacity:1
   }
-  @keyframes hintFade{0%,60%{opacity:1}100%{opacity:0}}
+  @keyframes hintFade{to{opacity:0}}
   .float-top{opacity:0;pointer-events:none}
   .float-top.show{opacity:1;pointer-events:auto}
 
@@ -754,7 +754,7 @@
     <img src="永玄大典.jpg" alt="永玄大典">
   </span>
 </button>
-<div class="music-hint">点击下方暂停播放</div>
+<div class="music-hint">点击下方<br>暂停播放</div>
 <!-- ── FLOATING BUTTONS ── -->
 <div class="float-actions">
   <button class="float-btn float-top" id="backToTop" title="回到顶部">↑</button>
