@@ -423,16 +423,21 @@
   .door-right .door-title{text-align:left}
   /* Left: "MULA" right-aligned, Right: "SAKEE" left-aligned */
   .door-sub{
-    font-size:clamp(.65rem,1.1vw,.9rem);letter-spacing:8px;
+    font-size:clamp(.65rem,1.1vw,.9rem);letter-spacing:6px;
     color:rgba(200,150,46,.4);margin-top:.8rem;font-weight:400
   }
   .door-left .door-sub{text-align:right}
   .door-right .door-sub{text-align:left}
-  /* Center seal - spans across both doors as a single element */
+  /* Center seal + subtitle - fade out when door opens */
+  .door-center-elements{
+    position:absolute;left:50%;top:58%;transform:translate(-50%,-50%);
+    z-index:10;display:flex;flex-direction:column;align-items:center;
+    pointer-events:none;gap:.8rem;
+    transition:opacity .4s ease .1s
+  }
+  .door-open .door-center-elements{opacity:0}
   .door-seal-wrap{
-    position:absolute;left:50%;bottom:20%;transform:translateX(-50%);
-    z-index:10;display:flex;align-items:center;gap:1.2rem;
-    pointer-events:none
+    display:flex;align-items:center;gap:1.2rem
   }
   .door-seal-wrap .line{
     width:5vw;max-width:80px;height:1px;
@@ -467,8 +472,9 @@
   @media(max-width:768px){
     .door-title{font-size:2.2rem}
     .door-sub{font-size:.5rem;letter-spacing:4px}
-    .door-seal-btn{font-size:.7rem;padding:.35rem .7rem}
+    .door-seal-btn{font-size:.65rem;padding:.3rem .6rem}
     .door-seal-wrap{gap:.6rem}
+    .door-center-elements{top:56%}
     .door-hint{font-size:.5rem;bottom:1.5rem;letter-spacing:3px}
     .nav-links{display:none}
     .bio-grid{grid-template-columns:1fr}
@@ -498,7 +504,6 @@
     <div class="door-inner">
       <div class="door-text-wrap">
         <div class="door-title">MULA</div>
-        <div class="door-sub">永 玄 大 典  ·</div>
       </div>
     </div>
   </div>
@@ -514,7 +519,6 @@
     <div class="door-inner">
       <div class="door-text-wrap">
         <div class="door-title">SAKEE</div>
-        <div class="door-sub">全 球 发 行</div>
       </div>
     </div>
   </div>
@@ -522,10 +526,13 @@
   <div class="door-dragon-border bottom"></div>
   <div class="door-dragon-border left"></div>
   <div class="door-dragon-border right"></div>
-  <div class="door-seal-wrap">
-    <span class="line"></span>
-    <span class="door-seal-btn">☰ 点击进入 ☰</span>
-    <span class="line"></span>
+  <div class="door-center-elements">
+    <div class="door-sub" style="text-align:center;letter-spacing:8px">永 玄 大 典  ·  全 球 发 行</div>
+    <div class="door-seal-wrap">
+      <span class="line"></span>
+      <span class="door-seal-btn">☰ 点击进入 ☰</span>
+      <span class="line"></span>
+    </div>
   </div>
   <div class="door-hint">点击封面开启</div>
 </div>
