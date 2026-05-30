@@ -134,7 +134,7 @@
     position:fixed;bottom:2rem;left:2rem;z-index:99;
     display:flex;align-items:center;gap:.6rem;
     padding:.5rem;
-    border-radius:50%;border:none;cursor:pointer;position:relative;
+    border-radius:50%;border:none;cursor:pointer;
     background:rgba(12,8,20,.8);backdrop-filter:blur(12px);
     border:1px solid rgba(168,85,247,.3);
     color:var(--text-dim);font-size:.75rem;letter-spacing:1px;
@@ -752,8 +752,10 @@
 <!-- ── MUSIC CONTROL ── -->
 <audio id="bgm" loop autoplay muted src="https://raw.githubusercontent.com/goodworkjeans-cmyk/mula-sakee/main/bgm.mp3"></audio>
 <button class="music-ctrl" id="musicCtrl">
-  <span class="mc-icon"><img src="永玄大典.jpg" alt="永玄大典"></span>
-  <span class="mc-speaker">🔊</span>
+  <span class="mc-icon" style="position:relative">
+    <img src="永玄大典.jpg" alt="永玄大典">
+    <span class="mc-speaker">🔊</span>
+  </span>
 </button>
 <!-- ── FLOATING BUTTONS ── -->
 <div class="float-actions">
