@@ -579,7 +579,7 @@
 </footer>
 
 <!-- ── MUSIC CONTROL ── -->
-<audio id="bgm" loop autoplay muted src="https://raw.githubusercontent.com/goodworkjeans-cmyk/mula-sakee/main/bgm.mp3"></audio>
+<audio id="bgm" loop src="https://raw.githubusercontent.com/goodworkjeans-cmyk/mula-sakee/main/bgm.mp3"></audio>
 <button class="music-ctrl" id="musicCtrl">
   <span class="mc-icon">♫</span>
   <span class="mc-label">云飞扬</span>
@@ -595,7 +595,7 @@ document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))
 const topBtn=document.getElementById('backToTop')
 window.addEventListener('scroll',()=>{topBtn.classList.toggle('show',window.scrollY>600)})
 topBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}))
-// Music playerbgm.onplay=function(){bgm.muted=false;ctrl.classList.add("playing");label.style.animation="mcSpin 3s linear infinite";playing=true};
+// Music player
 var bgm=document.getElementById('bgm');
 var ctrl=document.getElementById('musicCtrl');
 var label=ctrl.querySelector('.mc-icon');
