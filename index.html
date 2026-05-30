@@ -463,8 +463,10 @@
   .door-credit{
     position:absolute;bottom:4.5rem;left:50%;transform:translateX(-50%);
     z-index:5;font-size:.7rem;letter-spacing:3px;
-    color:rgba(200,150,46,.3);white-space:nowrap;pointer-events:none
+    color:rgba(200,150,46,.3);white-space:nowrap;pointer-events:none;
+    transition:opacity .4s ease .1s
   }
+  .door-open .door-credit{opacity:0}
   @keyframes doorPulse{0%,100%{opacity:.2}50%{opacity:.5}}
   @media(max-width:768px){
     .door-title{font-size:2.2rem}
