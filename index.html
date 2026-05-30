@@ -154,14 +154,30 @@
   .mc-speaker{
     position:absolute;inset:0;border-radius:50%;
     display:flex;align-items:center;justify-content:center;
-    font-size:1.1rem;background:rgba(0,0,0,.35);pointer-events:none;
-    transition:opacity .3s;opacity:0;z-index:2
+    background:rgba(0,0,0,.35);pointer-events:none;
+    transition:opacity .3s;opacity:0;z-index:2;
+    animation:mcSpinRev 8s linear infinite
   }
-  .music-ctrl.playing .mc-speaker{opacity:1;animation:mcSpinRev 8s linear infinite}
-  .music-ctrl.paused .mc-speaker{animation-play-state:paused}
+  .music-ctrl.playing .mc-speaker{opacity:1}
+  .music-ctrl.paused .mc-speaker{opacity:1;animation-play-state:paused}
+  /* Speaker base icon */
+  .mc-speaker::before{
+    content:'🔈';font-size:1.2rem;position:relative;z-index:1
+  }
+  /* Sound waves - only when playing */
+  .music-ctrl.playing .mc-speaker::after{
+    content:'';position:absolute;width:100%;height:100%;border-radius:50%;
+    background:radial-gradient(circle at 60% 50%,transparent 45%,rgba(200,150,46,.3) 46%,transparent 48%),
+               radial-gradient(circle at 70% 50%,transparent 38%,rgba(200,150,46,.2) 39%,transparent 42%),
+               radial-gradient(circle at 80% 50%,transparent 30%,rgba(200,150,46,.1) 31%,transparent 34%);
+    pointer-events:none
+  }
+  /* Diagonal slash - only when paused */
   .music-ctrl.paused .mc-speaker::after{
-    content:'/';position:absolute;font-size:1.6rem;font-weight:900;
-    color:rgba(255,80,80,.85);transform:rotate(-15deg)
+    content:'/';display:flex;align-items:center;justify-content:center;
+    font-size:2rem;font-weight:100;color:rgba(200,150,46,.6);
+    position:absolute;inset:0;border-radius:50%;pointer-events:none;
+    background:transparent;transform:rotate(-10deg)
   }
   .music-ctrl.playing .mc-icon{animation:mcSpin 8s linear infinite}
   .music-ctrl.paused .mc-icon{animation-play-state:paused}
