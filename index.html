@@ -357,69 +357,101 @@
 
   /* ─── DOOR OVERLAY ─── */
   .door-overlay{
-    position:fixed;inset:0;z-index:200;display:flex;
-    pointer-events:none
+    position:fixed;inset:0;z-index:200;display:flex;pointer-events:none
   }
   .door-overlay.show{pointer-events:auto}
   .door-half{
     width:50%;height:100vh;position:relative;overflow:hidden;
-    transition:transform 1.2s cubic-bezier(.77,0,.18,1);
-    background:radial-gradient(ellipse at 30% 50%,rgba(80,20,0,.6) 0%,#0a0000 70%);
+    transition:transform 1.3s cubic-bezier(.77,0,.18,1);
+    background:#080000;
     display:flex;align-items:center;justify-content:center
+  }
+  .door-half::before{
+    content:'';position:absolute;inset:0;
+    background:
+      radial-gradient(ellipse at 50% 40%,rgba(180,130,50,.04) 0%,transparent 60%);
+    pointer-events:none
   }
   .door-left{transform:translateX(0)}
   .door-right{transform:translateX(0)}
   .door-open .door-left{transform:translateX(-100%)}
   .door-open .door-right{transform:translateX(100%)}
-  .door-half::before{
-    content:'';position:absolute;inset:0;
-    background:
-      repeating-linear-gradient(90deg,transparent,transparent 40px,rgba(180,130,50,.04) 40px,rgba(180,130,50,.04) 41px),
-      repeating-linear-gradient(0deg,transparent,transparent 40px,rgba(180,130,50,.04) 40px,rgba(180,130,50,.04) 41px);
-    pointer-events:none
+  /* ---- Imperial border frames ---- */
+  .door-frame{
+    position:absolute;inset:12px;pointer-events:none;
+    border:1px solid rgba(180,130,50,.25)
   }
-  .door-half::after{
-    content:'';position:absolute;
-    top:10%;left:10%;right:10%;bottom:10%;
-    border:1px solid rgba(180,130,50,.2);pointer-events:none
+  .door-frame2{
+    position:absolute;inset:20px;pointer-events:none;
+    border:1px solid rgba(180,130,50,.12)
   }
-  .door-left .door-content{text-align:right;padding-right:2rem;z-index:1;position:relative}
-  .door-right .door-content{text-align:left;padding-left:2rem;z-index:1;position:relative}
+  /* Corner ornaments */
+  .door-corner{position:absolute;width:40px;height:40px;border-color:rgba(180,130,50,.35);border-style:solid;pointer-events:none}
+  .dc-tl{top:12px;left:12px;border-width:2px 0 0 2px}
+  .dc-tr{top:12px;right:12px;border-width:2px 2px 0 0}
+  .dc-bl{bottom:12px;left:12px;border-width:0 0 2px 2px}
+  .dc-br{bottom:12px;right:12px;border-width:0 2px 2px 0}
+  /* Dragon pattern top/bottom border */
+  .door-dragon-row{
+    position:absolute;left:0;right:0;height:24px;pointer-events:none;
+    background:repeating-conic-gradient(rgba(180,130,50,.08) 0% 25%,transparent 0% 50%) 0 0 / 20px 20px;
+    opacity:.5
+  }
+  .door-dragon-row.top{top:0}
+  .door-dragon-row.bottom{bottom:0}
+  /* ---- Center content (symmetrical) ---- */
+  .door-center{
+    position:relative;z-index:2;text-align:center
+  }
+  .door-icon{
+    font-size:2.5rem;opacity:.5;margin-bottom:1.5rem;
+    letter-spacing:12px;color:rgba(200,150,46,.6)
+  }
   .door-title{
-    font-size:clamp(2.5rem,5vw,5rem);font-weight:900;letter-spacing:6px;
-    background:linear-gradient(180deg,#f5e6b8,#c8962e);
+    font-size:clamp(3rem,6vw,6rem);font-weight:900;letter-spacing:12px;
+    background:linear-gradient(180deg,#f5e6b8 20%,#c8962e 80%);
     -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-    text-shadow:none;filter:drop-shadow(0 2px 10px rgba(200,150,46,.3));
-    line-height:1.1
+    filter:drop-shadow(0 4px 20px rgba(200,150,46,.25));
+    line-height:1.15
   }
   .door-sub{
-    font-size:clamp(.8rem,1.5vw,1.2rem);letter-spacing:8px;
-    color:rgba(200,150,46,.6);margin-top:.5rem
+    font-size:clamp(.75rem,1.2vw,1rem);letter-spacing:14px;
+    color:rgba(200,150,46,.45);margin-top:1.2rem;
+    font-weight:300
+  }
+  .door-seal-row{
+    margin-top:2rem;display:flex;align-items:center;justify-content:center;gap:2rem
   }
   .door-seal{
     display:inline-block;
-    border:3px solid rgba(200,150,46,.5);padding:.8rem 1.2rem;
-    background:rgba(200,150,46,.08);
-    font-size:clamp(1.2rem,2vw,2rem);font-weight:900;
-    color:rgba(200,150,46,.8);letter-spacing:4px;
-    transform:rotate(-3deg);margin-top:1rem
+    border:2px solid rgba(200,150,46,.3);padding:.5rem .9rem;
+    background:rgba(200,150,46,.06);
+    font-size:clamp(.9rem,1.2vw,1.2rem);font-weight:700;
+    color:rgba(200,150,46,.6);letter-spacing:4px
+  }
+  .door-line{
+    width:60px;height:1px;background:linear-gradient(90deg,transparent,rgba(200,150,46,.3),transparent)
   }
   .door-hint{
-    position:absolute;bottom:3rem;left:50%;transform:translateX(-50%);
-    color:rgba(200,150,46,.4);font-size:.8rem;letter-spacing:3px;
-    animation:doorPulse 2s ease-in-out infinite;white-space:nowrap;
-    z-index:1
+    position:absolute;bottom:3.5rem;left:50%;transform:translateX(-50%);
+    font-size:.8rem;letter-spacing:4px;color:rgba(200,150,46,.35);
+    animation:doorPulse 2.5s ease-in-out infinite;white-space:nowrap;z-index:2
   }
-  @keyframes doorPulse{0%,100%{opacity:.3}50%{opacity:.8}}
-  /* Golden decorative line */
-  .door-deco{
-    position:absolute;left:50%;top:0;bottom:0;width:1px;
-    background:linear-gradient(to bottom,transparent,rgba(200,150,46,.3),transparent)
+  @keyframes doorPulse{0%,100%{opacity:.25}50%{opacity:.7}}
+  /* Cloud pattern overlay */
+  .door-clouds{
+    position:absolute;inset:0;pointer-events:none;z-index:1;
+    background:radial-gradient(circle at 20% 30%,rgba(180,130,50,.02) 0%,transparent 40%),
+               radial-gradient(circle at 80% 70%,rgba(180,130,50,.02) 0%,transparent 40%),
+               radial-gradient(circle at 50% 50%,rgba(180,130,50,.015) 0%,transparent 50%)
   }
   @media(max-width:768px){
-    .door-title{font-size:2rem}
-    .door-sub{font-size:.7rem;letter-spacing:4px}
-    .door-seal{font-size:1rem;padding:.5rem .8rem}
+    .door-title{font-size:2.5rem;letter-spacing:6px}
+    .door-sub{font-size:.65rem;letter-spacing:6px}
+    .door-seal{font-size:.8rem;padding:.4rem .6rem}
+    .door-seal-row{gap:1rem}
+    .door-icon{font-size:1.5rem}
+    .door-line{width:30px}
     .nav-links{display:none}
     .bio-grid{grid-template-columns:1fr}
     .bio-photo{max-width:320px;margin:0 auto}
@@ -436,20 +468,28 @@
 
 <!-- ── DOOR OVERLAY ── -->
 <div class="door-overlay show" id="doorOverlay">
-  <div class="door-half door-left">
-    <div class="door-content">
-      <div class="door-title">MULA<br>SAKEE</div>
-      <div class="door-sub">THE OMNI ORACLE</div>
+  <div class="door-half door-left"></div>
+  <div class="door-half door-right"></div>
+  <div class="door-frame"></div>
+  <div class="door-frame2"></div>
+  <div class="door-corner dc-tl"></div>
+  <div class="door-corner dc-tr"></div>
+  <div class="door-corner dc-bl"></div>
+  <div class="door-corner dc-br"></div>
+  <div class="door-dragon-row top"></div>
+  <div class="door-dragon-row bottom"></div>
+  <div class="door-clouds"></div>
+  <div class="door-center">
+    <div class="door-icon">☰ 龍 ☰</div>
+    <div class="door-title">MULA<br>SAKEE</div>
+    <div class="door-sub">永 玄 大 典  ·  THE OMNI ORACLE</div>
+    <div class="door-seal-row">
+      <span class="door-line"></span>
+      <span class="door-seal">⟡ 点击进入 ⟡</span>
+      <span class="door-line"></span>
     </div>
   </div>
-  <div class="door-half door-right">
-    <div class="door-content">
-      <div class="door-title">永玄<br>大典</div>
-      <div class="door-seal">☰ 点击进入</div>
-    </div>
-  </div>
-  <div class="door-hint">⟡ 点击任意处开启 ⟡</div>
-  <div class="door-deco"></div>
+  <div class="door-hint">⟡ 天命所归 · 万邦来朝 ⟡</div>
 </div>
 
 
