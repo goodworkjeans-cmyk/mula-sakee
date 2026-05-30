@@ -9,7 +9,7 @@
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
     --purple-deep:#4c1d95;--purple:#7c3aed;--purple-light:#a855f7;
-    --pink:#c084fc;--pink-light:#e9d5ff;
+    --pink:#f472b6;--pink-light:#f9a8d4;--pink-soft:#ec4899;
     --bg:#07040d;--card:#120e1a;--card-hover:#181325;
     --text:#f3f0ff;--text-dim:#b8add4;--accent:#a855f7
   }
@@ -21,7 +21,7 @@
   body::before{
     content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
     background:radial-gradient(ellipse at 20% 20%,rgba(124,58,237,.08) 0%,transparent 50%),
-               radial-gradient(ellipse at 80% 60%,rgba(192,132,252,.06) 0%,transparent 50%),
+               radial-gradient(ellipse at 80% 60%,rgba(244,114,182,.05) 0%,transparent 50%),
                radial-gradient(ellipse at 50% 100%,rgba(168,85,247,.05) 0%,transparent 40%)
   }
 
@@ -50,7 +50,7 @@
     background:linear-gradient(90deg,var(--purple-light),var(--pink));
     transition:width .3s
   }
-  .nav-links a:hover{color:var(--pink-light)}
+  .nav-links a:hover{color:var(--pink)}
   .nav-links a:hover::after{width:100%}
 
   /* ─── HERO ─── */
@@ -59,7 +59,7 @@
     justify-content:center;align-items:center;text-align:center;
     position:relative;overflow:hidden;
     background:radial-gradient(ellipse at 50% 40%,rgba(168,85,247,.18) 0%,transparent 60%),
-               radial-gradient(ellipse at 20% 80%,rgba(192,132,252,.1) 0%,transparent 50%),
+               radial-gradient(ellipse at 20% 80%,rgba(244,114,182,.08) 0%,transparent 50%),
                radial-gradient(ellipse at 80% 20%,rgba(124,58,237,.12) 0%,transparent 50%)
   }
   .hero-bg-img{
@@ -98,7 +98,7 @@
     margin-top:2.5rem;display:inline-flex;align-items:center;gap:.8rem;
     padding:.6rem 1.8rem;border-radius:50px;
     background:linear-gradient(135deg,rgba(124,58,237,.25),rgba(192,132,252,.15));
-    border:1px solid rgba(192,132,252,.35);
+    border:1px solid rgba(244,114,182,.35);
     backdrop-filter:blur(8px);
     box-shadow:0 0 30px rgba(168,85,247,.15);
     animation:heroPulse 3s ease-in-out infinite
@@ -138,15 +138,15 @@
     padding:.5rem;
     border-radius:50%;border:none;cursor:pointer;
     background:rgba(12,8,20,.8);backdrop-filter:blur(12px);
-    border:1px solid rgba(168,85,247,.3);
+    border:1px solid rgba(244,114,182,.3);
     color:var(--text-dim);font-size:.75rem;letter-spacing:1px;
     transition:all .3s;box-shadow:0 4px 16px rgba(0,0,0,.4)
   }
-  .music-ctrl:hover{border-color:var(--pink);color:var(--pink-light);box-shadow:0 4px 24px rgba(168,85,247,.2)}
+  .music-ctrl:hover{border-color:var(--pink-soft);color:var(--pink-light);box-shadow:0 4px 24px rgba(168,85,247,.2)}
   .music-ctrl .mc-icon{
     width:52px;height:52px;border-radius:50%;overflow:hidden;
     display:flex;align-items:center;justify-content:center;
-    flex-shrink:0;transition:all .3s;border:2px solid rgba(168,85,247,.4);
+    flex-shrink:0;transition:all .3s;border:2px solid rgba(244,114,182,.4);
     position:relative
   }
   .music-ctrl .mc-icon img{
@@ -185,7 +185,7 @@
   .bio-grid{display:grid;grid-template-columns:380px 1fr;gap:3rem;align-items:stretch}
   .bio-photo{
     width:100%;height:100%;border-radius:16px;
-    border:1px solid rgba(168,85,247,.3);
+    border:1px solid rgba(244,114,182,.3);
     box-shadow:0 0 30px rgba(124,58,237,.12),0 0 60px rgba(168,85,247,.08);
     transition:transform .4s,box-shadow .4s,border-color .4s;
     object-fit:cover
