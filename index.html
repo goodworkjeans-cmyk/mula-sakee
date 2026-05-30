@@ -595,7 +595,7 @@ document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))
 const topBtn=document.getElementById('backToTop')
 window.addEventListener('scroll',()=>{topBtn.classList.toggle('show',window.scrollY>600)})
 topBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}))
-// Music player
+// Music playerbgm.onplay=function(){bgm.muted=false;ctrl.classList.add("playing");label.style.animation="mcSpin 3s linear infinite";playing=true};
 var bgm=document.getElementById('bgm');
 var ctrl=document.getElementById('musicCtrl');
 var label=ctrl.querySelector('.mc-icon');
