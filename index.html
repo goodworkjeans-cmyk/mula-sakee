@@ -160,7 +160,7 @@
     transform:translateX(-50%);
     font-size:.85rem;letter-spacing:3px;color:rgba(168,85,247,.5);
     line-height:1.5;pointer-events:none;text-align:center;
-    animation:hintFade 2.5s ease 14s forwards;opacity:1
+    animation:hintFade 3.5s ease 19s forwards;opacity:1
   }
   @keyframes hintFade{to{opacity:0}}
   .float-top{opacity:0;pointer-events:none}
@@ -287,6 +287,16 @@
   .album-tracks li::before{content:'♫';margin-right:.5rem;color:var(--pink);font-size:.65rem}
 
   /* ─── LYRICS ─── */
+
+  /* ─── RECOMMENDED SONGS ─── */
+  .rec-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1.2rem}
+  .rec-card{border-radius:16px;overflow:hidden;background:linear-gradient(160deg,rgba(30,15,55,.5),rgba(14,10,22,.95));border:1px solid rgba(168,85,247,.15);transition:all .3s}
+  .rec-card:hover{transform:translateY(-4px);border-color:rgba(244,114,182,.3);box-shadow:0 6px 30px rgba(124,58,237,.15),0 0 25px rgba(244,114,182,.07)}
+  .rec-cover{width:100%;aspect-ratio:1/1;overflow:hidden;background:linear-gradient(135deg,#1a0533,#4c1d95);display:flex;align-items:center;justify-content:center;font-size:2rem;color:rgba(200,150,46,.4)}
+  .rec-cover img{width:100%;height:100%;object-fit:cover;display:block}
+  .rec-info{padding:.8rem 1rem}
+  .rec-name{font-weight:700;font-size:.9rem;margin-bottom:.2rem}
+  .rec-album{font-size:.75rem;color:var(--text-dim)}
   .lyrics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
   .lyric-card{
     padding:2rem;border-radius:20px;position:relative;
@@ -490,7 +500,7 @@
     section{padding:3rem 1.2rem}
     .bio-grid{grid-template-columns:1fr}
     .bio-photo{max-width:100%;margin:0 auto}
-    .albums-grid,.style-grid,.lyrics-grid{grid-template-columns:1fr}
+    .albums-grid,.style-grid,.lyrics-grid,.rec-grid{grid-template-columns:1fr}
     .albums-grid{gap:1rem}
     .album-inner{padding:1rem}
     .hero h1{font-size:2.5rem}
@@ -725,6 +735,19 @@
   </div>
 </section>
 
+
+<!-- ─── RECOMMENDED ─── -->
+<section id="rec">
+  <h2 class="section-title reveal"><span></span> Catherine 推荐歌曲</h2>
+  <p style="color:var(--text-dim);margin-bottom:1.5rem;font-size:.9rem">Catherine's Picks · 点击封面即可播放</p>
+  <div class="rec-grid reveal">
+    <div class="rec-card"><div class="rec-cover"><span>🔥</span></div><div class="rec-info"><div class="rec-name">操作</div><div class="rec-album">SSS</div></div></div>
+    <div class="rec-card"><div class="rec-cover"><span>⚔️</span></div><div class="rec-info"><div class="rec-name">ATHENA</div><div class="rec-album">SSS</div></div></div>
+    <div class="rec-card"><div class="rec-cover"><span>🗡️</span></div><div class="rec-info"><div class="rec-name">倚天屠龙记</div><div class="rec-album">SAINT JUICE</div></div></div>
+    <div class="rec-card"><div class="rec-cover"><span>🐉</span></div><div class="rec-info"><div class="rec-name">玄龙兴 扫六合</div><div class="rec-album">永玄大典</div></div></div>
+    <div class="rec-card"><div class="rec-cover"><span>💎</span></div><div class="rec-info"><div class="rec-name">Goyard Feast</div><div class="rec-album">SAINT JUICE</div></div></div>
+  </div>
+</section>
 <!-- ── TOUR ── -->
 <section id="tour">
   <h2 class="section-title reveal"><span></span> 2026 全国巡演</h2>
