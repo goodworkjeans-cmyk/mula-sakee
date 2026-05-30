@@ -579,12 +579,11 @@
 </footer>
 
 <!-- ── MUSIC CONTROL ── -->
-<audio id="bgm" loop></audio>
+<audio id="bgm" loop src="https://raw.githubusercontent.com/goodworkjeans-cmyk/mula-sakee/main/bgm.mp3"></audio>
 <button class="music-ctrl" id="musicCtrl">
   <span class="mc-icon">♫</span>
   <span class="mc-label">云飞扬</span>
 </button>
-
 <!-- ── FLOATING BUTTONS ── -->
 <div class="float-actions">
   <button class="float-btn float-top" id="backToTop" title="回到顶部">↑</button>
@@ -593,41 +592,21 @@
 <script>
 const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('show');observer.unobserve(entry.target)}})},{threshold:.15})
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))
-
 const topBtn=document.getElementById('backToTop')
 window.addEventListener('scroll',()=>{topBtn.classList.toggle('show',window.scrollY>600)})
 topBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}))
-
-
-
-
-
-
-
-(function(){
-  var bgm=document.getElementById('bgm');
-  var ctrl=document.getElementById('musicCtrl');
-  var label=ctrl.querySelector('.mc-icon');
-  var playing=false;
-  var url='https://raw.githubusercontent.com/goodworkjeans-cmyk/mula-sakee/main/bgm.mp3';
-  fetch(url).then(function(r){return r.blob()}).then(function(blob){
-    bgm.src=URL.createObjectURL(blob);
-    bgm.muted=true;
-    bgm.play().then(function(){
-      bgm.muted=false;playing=true;
-      ctrl.classList.add('playing');label.style.animation='mcSpin 3s linear infinite';
-    }).catch(function(){});
-  }).catch(function(){});
-  ctrl.addEventListener('click',function(e){
-    e.stopPropagation();
-    if(playing){bgm.pause();ctrl.classList.remove('playing');label.style.animation='none';playing=false;}
-    else{bgm.muted=true;bgm.play().then(function(){
-      bgm.muted=false;playing=true;
-      ctrl.classList.add('playing');label.style.animation='mcSpin 3s linear infinite';
-    }).catch(function(){})}
-  });
-})();
+// Music player
+var bgm=document.getElementById('bgm');
+var ctrl=document.getElementById('musicCtrl');
+var label=ctrl.querySelector('.mc-icon');
+var playing=false;
+ctrl.onclick=function(e){
+  e.preventDefault();
+  if(playing){bgm.pause();ctrl.classList.remove('playing');label.style.animation='none';playing=false}
+  else{bgm.play();ctrl.classList.add('playing');label.style.animation='mcSpin 3s linear infinite';playing=true}
+};
 </script>
+
 
 </body>
 </html>
