@@ -149,7 +149,8 @@
   .music-ctrl .mc-icon img{
     width:100%;height:100%;object-fit:cover;display:block
   }
-  .music-ctrl.playing .mc-icon{animation:mcSpin 3s linear infinite}
+  .music-ctrl.playing .mc-icon{animation:mcSpin 8s linear infinite}
+  .music-ctrl.paused .mc-icon{animation-play-state:paused}
   .float-top{opacity:0;pointer-events:none}
   .float-top.show{opacity:1;pointer-events:auto}
 
@@ -754,11 +755,8 @@ topBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}))
 var door=document.getElementById('doorOverlay');
 door.addEventListener('click',function(){
   door.classList.add('door-open');
-  bgm.play().then(function(){
-    playing=true;
-    ctrl.classList.add('playing');
-    label.style.animation='mcSpin 3s linear infinite';
-  }).catch(function(){});
+  ctrl.classList.add('playing');
+  bgm.play().then(function(){playing=true;}).catch(function(){});
   setTimeout(function(){door.style.display='none'},1300);
 });
 // Music player
@@ -769,8 +767,8 @@ var playing=false;
 bgm.onplay=function(){bgm.muted=false};
 ctrl.onclick=function(e){
   e.preventDefault();
-  if(playing){bgm.pause();ctrl.classList.remove('playing');label.style.animation='none';playing=false}
-  else{bgm.play();ctrl.classList.add('playing');label.style.animation='mcSpin 3s linear infinite';playing=true}
+  if(playing){bgm.pause();ctrl.classList.remove('paused');void ctrl.offsetWidth;ctrl.classList.add('paused');playing=false}
+  else{ctrl.classList.remove('paused');bgm.play();ctrl.classList.add('playing');playing=true}
 };
 </script>
 
