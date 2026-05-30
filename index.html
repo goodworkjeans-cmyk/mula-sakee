@@ -126,9 +126,11 @@
   .float-btn{
     width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;
     display:flex;align-items:center;justify-content:center;font-size:1.3rem;
-    transition:all .3s;box-shadow:0 4px 16px rgba(0,0,0,.4)
+    transition:all .3s;box-shadow:0 4px 16px rgba(0,0,0,.4);
+    opacity:.55
   }
-  .float-btn:hover{transform:scale(1.1)}
+  .float-btn:hover{transform:scale(1.1);opacity:.9}
+  .float-btn .arrow{font-size:1.4rem;font-weight:700;line-height:1}
 
   /* ─── MUSIC CONTROL ─── */
   .music-ctrl{
@@ -155,11 +157,13 @@
   .music-ctrl.paused .mc-icon{animation-play-state:paused}
   /* Hint text above button */
   .music-hint{
-    position:fixed;bottom:calc(2rem + 90px);left:2rem;z-index:98;
+    position:fixed;bottom:calc(2rem + 90px);left:calc(2rem + 26px);z-index:98;
+    transform:translateX(calc(-50% + 4px));
     font-size:.6rem;letter-spacing:2px;color:rgba(168,85,247,.5);
-    line-height:1.5;pointer-events:none;
+    line-height:1.5;pointer-events:none;text-align:center;
     animation:hintFade 2s ease 6s forwards;opacity:1
   }
+  .hint-l2{font-size:.75rem;letter-spacing:3px}
   @keyframes hintFade{to{opacity:0}}
   .float-top{opacity:0;pointer-events:none}
   .float-top.show{opacity:1;pointer-events:auto}
@@ -754,10 +758,10 @@
     <img src="永玄大典.jpg" alt="永玄大典">
   </span>
 </button>
-<div class="music-hint">点击下方<br>暂停播放</div>
+<div class="music-hint"><span class="hint-l1">点击下方</span><br><span class="hint-l2">暂停播放</span></div>
 <!-- ── FLOATING BUTTONS ── -->
 <div class="float-actions">
-  <button class="float-btn float-top" id="backToTop" title="回到顶部">↑</button>
+  <button class="float-btn float-top" id="backToTop" title="回到顶部"><span class="arrow">↑</span></button>
 </div>
 
 <script>
