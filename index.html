@@ -119,6 +119,7 @@
   .scroll-hint span{font-size:.75rem;color:var(--pink);letter-spacing:3px;opacity:.7}
   @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
   @keyframes mcSpin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+  @keyframes mcSpinRev{0%{transform:rotate(0deg)}100%{transform:rotate(-360deg)}}
 
   /* ─── FLOATING ACTIONS ─── */
   .float-actions{position:fixed;bottom:2rem;right:2rem;z-index:99;display:flex;flex-direction:column;gap:.75rem}
@@ -156,7 +157,8 @@
     font-size:1.1rem;background:rgba(0,0,0,.35);pointer-events:none;
     transition:opacity .3s;opacity:0;z-index:2
   }
-  .music-ctrl.playing .mc-speaker{opacity:1}
+  .music-ctrl.playing .mc-speaker{opacity:1;animation:mcSpinRev 8s linear infinite}
+  .music-ctrl.paused .mc-speaker{animation-play-state:paused}
   .music-ctrl.paused .mc-speaker::after{
     content:'/';position:absolute;font-size:1.6rem;font-weight:900;
     color:rgba(255,80,80,.85);transform:rotate(-15deg)
