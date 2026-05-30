@@ -682,10 +682,10 @@ topBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}))
 var door=document.getElementById('doorOverlay');
 door.addEventListener('click',function(){
   door.classList.add('door-open');
-  var bgm=document.getElementById('bgm');
   bgm.play().then(function(){
-    document.getElementById('musicCtrl').classList.add('playing');
-    document.querySelector('#musicCtrl .mc-icon').style.animation='mcSpin 3s linear infinite';
+    playing=true;
+    ctrl.classList.add('playing');
+    label.style.animation='mcSpin 3s linear infinite';
   }).catch(function(){});
   setTimeout(function(){door.style.display='none'},1300);
 });
