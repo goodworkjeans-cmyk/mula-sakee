@@ -368,19 +368,15 @@
   }
   .door-left{
     transform:translateX(0);
-    background:url('https://raw.githubusercontent.com/goodworkjeans-cmyk/mula-sakee/main/永玄大典.jpg') right center / 200% 100% no-repeat
+    background:#050000
   }
   .door-right{
     transform:translateX(0);
-    background:url('https://raw.githubusercontent.com/goodworkjeans-cmyk/mula-sakee/main/永玄大典.jpg') left center / 200% 100% no-repeat
+    background:#050000
   }
   .door-open .door-left{transform:translateX(-100%)}
   .door-open .door-right{transform:translateX(100%)}
   /* ===== Content inside each half ===== */
-  .door-half::after{
-    content:'';position:absolute;inset:0;
-    background:linear-gradient(to bottom,rgba(0,0,0,.7) 0%,rgba(0,0,0,.5) 50%,rgba(0,0,0,.8) 100%);
-    pointer-events:none
   }
   .door-inner{
     position:relative;width:100%;height:100%;display:flex;
@@ -480,6 +476,11 @@
     animation:doorPulse 2.5s ease-in-out infinite;white-space:nowrap;
     pointer-events:none
   }
+  .door-credit{
+    position:absolute;bottom:4.5rem;left:50%;transform:translateX(-50%);
+    z-index:5;font-size:.7rem;letter-spacing:3px;
+    color:rgba(200,150,46,.3);white-space:nowrap;pointer-events:none
+  }
   @keyframes doorPulse{0%,100%{opacity:.2}50%{opacity:.5}}
   @media(max-width:768px){
     .door-title{font-size:2.2rem}
@@ -546,6 +547,7 @@
       <span class="line"></span>
     </div>
   </div>
+  <div class="door-credit">Made by Goodwork for <span style="color:rgba(200,150,46,.5)">Catherine</span></div>
   <div class="door-hint">点击封面开启</div>
 </div>
 
