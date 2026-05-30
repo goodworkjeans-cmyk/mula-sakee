@@ -133,7 +133,7 @@
   .music-ctrl{
     position:fixed;bottom:2rem;left:2rem;z-index:99;
     display:flex;align-items:center;gap:.6rem;
-    padding:.5rem .5rem .5rem 1rem;
+    padding:.4rem;
     border-radius:30px;border:none;cursor:pointer;
     background:rgba(12,8,20,.8);backdrop-filter:blur(12px);
     border:1px solid rgba(168,85,247,.3);
@@ -142,10 +142,12 @@
   }
   .music-ctrl:hover{border-color:var(--pink);color:var(--pink-light);box-shadow:0 4px 24px rgba(168,85,247,.2)}
   .music-ctrl .mc-icon{
-    width:36px;height:36px;border-radius:50%;
-    background:linear-gradient(135deg,var(--purple-light),var(--pink));
-    display:flex;align-items:center;justify-content:center;font-size:1rem;
-    flex-shrink:0;transition:all .3s
+    width:40px;height:40px;border-radius:50%;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;transition:all .3s;border:2px solid rgba(168,85,247,.4)
+  }
+  .music-ctrl .mc-icon img{
+    width:100%;height:100%;object-fit:cover;display:block
   }
   .music-ctrl.playing .mc-icon{animation:mcSpin 3s linear infinite}
   .float-top{opacity:0;pointer-events:none}
@@ -475,7 +477,6 @@
     .hero h1{font-size:3rem}
     .tour-item{flex-direction:column;align-items:flex-start;gap:.4rem}
     .social-grid{flex-direction:column;align-items:center}
-    .music-ctrl .mc-label{max-width:60px}
     #bgmFrame{width:260px;height:160px;bottom:4.5rem}
   }
 </style>
@@ -736,8 +737,7 @@
 <!-- ── MUSIC CONTROL ── -->
 <audio id="bgm" loop autoplay muted src="https://raw.githubusercontent.com/goodworkjeans-cmyk/mula-sakee/main/bgm.mp3"></audio>
 <button class="music-ctrl" id="musicCtrl">
-  <span class="mc-icon">♫</span>
-  <span class="mc-label">云飞扬</span>
+  <span class="mc-icon"><img src="永玄大典.jpg" alt="永玄大典"></span>
 </button>
 <!-- ── FLOATING BUTTONS ── -->
 <div class="float-actions">
