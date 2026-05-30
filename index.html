@@ -182,14 +182,15 @@
   .reveal.show{opacity:1;transform:translateY(0)}
 
   /* ─── BIO ─── */
-  .bio-grid{display:grid;grid-template-columns:380px 1fr;gap:3rem;align-items:start}
+  .bio-grid{display:grid;grid-template-columns:380px 1fr;gap:3rem;align-items:stretch}
   .bio-photo{
-    width:100%;border-radius:16px;
+    width:100%;height:100%;border-radius:16px;
     border:1px solid rgba(168,85,247,.3);
     box-shadow:0 0 30px rgba(124,58,237,.12),0 0 60px rgba(168,85,247,.08);
-    transition:transform .4s,box-shadow .4s,border-color .4s
+    transition:transform .4s,box-shadow .4s,border-color .4s;
+    object-fit:cover
   }
-  .bio-photo:hover{transform:scale(1.02);border-color:rgba(192,132,252,.5);box-shadow:0 0 40px rgba(124,58,237,.2),0 0 80px rgba(168,85,247,.15)}
+  .bio-photo:hover{transform:scale(1.01);border-color:rgba(192,132,252,.5);box-shadow:0 0 40px rgba(124,58,237,.2),0 0 80px rgba(168,85,247,.15)}
   .bio-right{display:flex;flex-direction:column;gap:1.5rem;flex:1}
   .bio-card{
     background:linear-gradient(135deg,rgba(30,15,55,.6),rgba(18,14,26,.9));
