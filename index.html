@@ -357,107 +357,105 @@
 
   /* ─── DOOR OVERLAY ─── */
   .door-overlay{
-    position:fixed;inset:0;z-index:200;pointer-events:none;
-    background:#050000
+    position:fixed;inset:0;z-index:200;overflow:hidden;pointer-events:none;
+    background:#050000;display:flex
   }
   .door-overlay.show{pointer-events:auto}
-  .door-row{
-    position:absolute;inset:0;display:flex;overflow:hidden
-  }
   .door-half{
     width:50%;height:100vh;position:relative;overflow:hidden;
     transition:transform 1.3s cubic-bezier(.77,0,.18,1);
-    background:radial-gradient(ellipse at center,rgba(100,30,0,.15) 0%,#050000 70%)
-  }
-  .door-half::before{
-    content:'';position:absolute;inset:0;
-    background:url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 40 L80 40 M40 0 L40 80' stroke='rgba(180,130,50,0.04)' stroke-width='0.5'/%3E%3C/svg%3E");
-    pointer-events:none
+    background:radial-gradient(ellipse at 50% 50%,rgba(100,30,0,.12) 0%,#050000 70%);
+    display:flex;align-items:center;justify-content:center
   }
   .door-left{transform:translateX(0)}
   .door-right{transform:translateX(0)}
   .door-open .door-left{transform:translateX(-100%)}
   .door-open .door-right{transform:translateX(100%)}
-  /* Vertical center line */
-  .door-center-line{
-    position:absolute;left:50%;top:8%;bottom:8%;width:1px;z-index:3;
-    background:linear-gradient(to bottom,transparent,rgba(200,150,46,.25) 30%,rgba(200,150,46,.25) 70%,transparent);
+  /* ===== Content inside each half ===== */
+  .door-inner{
+    position:relative;width:100%;height:100%;display:flex;
+    align-items:center;justify-content:center;
+    flex-direction:column
+  }
+  /* Left half border (frames + corner ornaments inside each half) */
+  .door-half .door-frame{
+    position:absolute;inset:10px;
+    border:1px solid rgba(180,130,50,.18);pointer-events:none
+  }
+  .door-half .door-frame2{
+    position:absolute;inset:18px;
+    border:1px solid rgba(180,130,50,.08);pointer-events:none
+  }
+  /* Left-side corner decorations (each half gets relevant corners) */
+  .door-half .dc{
+    position:absolute;width:28px;height:28px;
+    border-color:rgba(180,130,50,.25);border-style:solid;
     pointer-events:none
   }
-  /* Border frame */
-  .door-border{
-    position:absolute;inset:10px;z-index:3;
-    border:1px solid rgba(180,130,50,.2);pointer-events:none
+  .door-left .dc-tl{top:10px;left:10px;border-width:2px 0 0 2px}
+  .door-left .dc-bl{bottom:10px;left:10px;border-width:0 0 2px 2px}
+  .door-left .dc-tr{top:10px;right:10px;border-width:2px 2px 0 0}
+  .door-left .dc-br{bottom:10px;right:10px;border-width:0 2px 2px 0}
+  .door-right .dc-tl{top:10px;left:10px;border-width:2px 0 0 2px}
+  .door-right .dc-bl{bottom:10px;left:10px;border-width:0 0 2px 2px}
+  .door-right .dc-tr{top:10px;right:10px;border-width:2px 2px 0 0}
+  .door-right .dc-br{bottom:10px;right:10px;border-width:0 2px 2px 0}
+  /* Gold decorative band in each half */
+  .door-half .gold-band{
+    position:absolute;left:0;right:0;height:1px;pointer-events:none;
+    background:linear-gradient(90deg,transparent,rgba(200,150,46,.2),transparent)
   }
-  .door-border-inner{
-    position:absolute;inset:18px;z-index:3;
-    border:1px solid rgba(180,130,50,.1);pointer-events:none
-  }
-  /* Corner ornaments */
-  .door-ornament{
-    position:absolute;width:36px;height:36px;
-    border-color:rgba(180,130,50,.3);border-style:solid;
-    z-index:3;pointer-events:none
-  }
-  .do-tl{top:10px;left:10px;border-width:2px 0 0 2px}
-  .do-tr{top:10px;right:10px;border-width:2px 2px 0 0}
-  .do-bl{bottom:10px;left:10px;border-width:0 0 2px 2px}
-  .do-br{bottom:10px;right:10px;border-width:0 2px 2px 0}
-  /* Decorative band top/bottom */
-  .door-band{
-    position:absolute;left:10%;right:10%;height:2px;z-index:3;
-    background:linear-gradient(90deg,transparent,rgba(200,150,46,.2),rgba(200,150,46,.3),rgba(200,150,46,.2),transparent);
-    pointer-events:none
-  }
-  .door-band.top{top:30%}
-  .door-band.bottom{bottom:30%}
-  /* Center content - absolute positioned */
-  .door-center{
-    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-    z-index:5;text-align:center;pointer-events:none
-  }
-  .door-icon{
-    font-size:2.8rem;letter-spacing:16px;color:rgba(200,150,46,.3);
-    margin-bottom:1rem;font-weight:100
-  }
+  .door-half .gold-band.t{top:28%}
+  .door-half .gold-band.b{bottom:28%}
+  /* Left: text aligned right edge (so it meets center). Right: text aligned left edge */
+  .door-left .door-text-wrap{text-align:right;padding-right:0;width:100%;padding-left:4vw}
+  .door-right .door-text-wrap{text-align:left;padding-left:0;width:100%;padding-right:4vw}
   .door-title{
-    font-size:clamp(3rem,6vw,6rem);font-weight:900;letter-spacing:14px;
+    font-size:clamp(2.5rem,5vw,5rem);font-weight:900;letter-spacing:8px;
     background:linear-gradient(180deg,#f5e6b8 10%,#c8962e 70%,#8a6510);
     -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-    filter:drop-shadow(0 4px 25px rgba(200,150,46,.2));
-    line-height:1.15
+    filter:drop-shadow(0 4px 30px rgba(200,150,46,.15));
+    line-height:1.2
   }
+  .door-left .door-title{text-align:right}
+  .door-right .door-title{text-align:left}
+  /* Left: "MULA" right-aligned, Right: "SAKEE" left-aligned */
   .door-sub{
-    font-size:clamp(.75rem,1.2vw,1rem);letter-spacing:12px;
-    color:rgba(200,150,46,.4);margin-top:1.5rem;font-weight:300
+    font-size:clamp(.6rem,1vw,.85rem);letter-spacing:6px;
+    color:rgba(200,150,46,.35);margin-top:.8rem;font-weight:300
   }
-  .door-seal-row{
-    margin-top:2rem;display:flex;align-items:center;justify-content:center;gap:1.5rem
+  .door-left .door-sub{text-align:right}
+  .door-right .door-sub{text-align:left}
+  /* The seal/button - left half shows left line + left half of seal */
+  .door-bottom-row{
+    margin-top:1.5rem;display:flex;align-items:center;gap:0
   }
+  .door-left .door-bottom-row{justify-content:flex-end}
+  .door-right .door-bottom-row{justify-content:flex-start}
   .door-seal{
-    border:1px solid rgba(200,150,46,.25);padding:.4rem .8rem;
-    background:rgba(200,150,46,.05);
-    font-size:clamp(.7rem,1vw,1rem);font-weight:700;
-    color:rgba(200,150,46,.5);letter-spacing:3px
+    border:1px solid rgba(200,150,46,.2);padding:.3rem .6rem;
+    background:rgba(200,150,46,.04);
+    font-size:clamp(.6rem,.8vw,.8rem);font-weight:700;
+    color:rgba(200,150,46,.45);letter-spacing:2px;white-space:nowrap
   }
   .door-line-el{
-    width:50px;height:1px;
-    background:linear-gradient(90deg,transparent,rgba(200,150,46,.25),transparent)
+    width:4vw;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(200,150,46,.2),transparent)
   }
+  /* Hint text at bottom of the door (spans across both halves visually) */
   .door-hint{
-    position:absolute;bottom:3.5rem;left:50%;transform:translateX(-50%);
-    z-index:5;
-    font-size:.8rem;letter-spacing:6px;color:rgba(200,150,46,.3);
-    animation:doorPulse 2.5s ease-in-out infinite;white-space:nowrap
+    position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:5;
+    font-size:.75rem;letter-spacing:5px;color:rgba(200,150,46,.25);
+    animation:doorPulse 2.5s ease-in-out infinite;white-space:nowrap;
+    pointer-events:none
   }
-  @keyframes doorPulse{0%,100%{opacity:.2}50%{opacity:.6}}
+  @keyframes doorPulse{0%,100%{opacity:.2}50%{opacity:.5}}
   @media(max-width:768px){
-    .door-title{font-size:2.5rem;letter-spacing:8px}
-    .door-sub{font-size:.6rem;letter-spacing:6px}
-    .door-seal{font-size:.7rem;padding:.3rem .5rem}
-    .door-seal-row{gap:1rem}
-    .door-line-el{width:24px}
-    .door-hint{font-size:.65rem;bottom:2rem}
+    .door-title{font-size:2rem}
+    .door-sub{font-size:.5rem;letter-spacing:4px}
+    .door-seal{font-size:.55rem;padding:.2rem .4rem}
+    .door-line-el{width:3vw}
+    .door-hint{font-size:.55rem;bottom:1.5rem;letter-spacing:3px}
     .nav-links{display:none}
     .bio-grid{grid-template-columns:1fr}
     .bio-photo{max-width:320px;margin:0 auto}
@@ -474,26 +472,44 @@
 
 <!-- ── DOOR OVERLAY ── -->
 <div class="door-overlay show" id="doorOverlay">
-  <div class="door-row">
-    <div class="door-half door-left"></div>
-    <div class="door-half door-right"></div>
+  <div class="door-half door-left">
+    <div class="door-frame"></div>
+    <div class="door-frame2"></div>
+    <div class="dc dc-tl"></div>
+    <div class="dc dc-bl"></div>
+    <div class="dc dc-tr"></div>
+    <div class="dc dc-br"></div>
+    <div class="gold-band t"></div>
+    <div class="gold-band b"></div>
+    <div class="door-inner">
+      <div class="door-text-wrap">
+        <div class="door-title">MULA</div>
+        <div class="door-sub">永 玄 大 典</div>
+        <div class="door-bottom-row">
+          <span class="door-line-el"></span>
+          <span class="door-seal">☰ 点</span>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="door-center-line"></div>
-  <div class="door-border"></div>
-  <div class="door-border-inner"></div>
-  <div class="door-ornament do-tl"></div>
-  <div class="door-ornament do-tr"></div>
-  <div class="door-ornament do-bl"></div>
-  <div class="door-ornament do-br"></div>
-  <div class="door-band top"></div>
-  <div class="door-band bottom"></div>
-  <div class="door-center">
-    <div class="door-title">MULA<br>SAKEE</div>
-    <div class="door-sub">永 玄 大 典  ·  THE OMNI ORACLE</div>
-    <div class="door-seal-row">
-      <span class="door-line-el"></span>
-      <span class="door-seal">☰ 点击进入 ☰</span>
-      <span class="door-line-el"></span>
+  <div class="door-half door-right">
+    <div class="door-frame"></div>
+    <div class="door-frame2"></div>
+    <div class="dc dc-tl"></div>
+    <div class="dc dc-bl"></div>
+    <div class="dc dc-tr"></div>
+    <div class="dc dc-br"></div>
+    <div class="gold-band t"></div>
+    <div class="gold-band b"></div>
+    <div class="door-inner">
+      <div class="door-text-wrap">
+        <div class="door-title">SAKEE</div>
+        <div class="door-sub">THE OMNI ORACLE</div>
+        <div class="door-bottom-row">
+          <span class="door-seal">击进入 ☰</span>
+          <span class="door-line-el"></span>
+        </div>
+      </div>
     </div>
   </div>
   <div class="door-hint">⟡ 点击任意处开启 ⟡</div>
