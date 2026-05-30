@@ -423,28 +423,39 @@
   .door-right .door-title{text-align:left}
   /* Left: "MULA" right-aligned, Right: "SAKEE" left-aligned */
   .door-sub{
-    font-size:clamp(.6rem,1vw,.85rem);letter-spacing:6px;
-    color:rgba(200,150,46,.35);margin-top:.8rem;font-weight:300
+    font-size:clamp(.65rem,1.1vw,.9rem);letter-spacing:8px;
+    color:rgba(200,150,46,.4);margin-top:.8rem;font-weight:400
   }
   .door-left .door-sub{text-align:right}
   .door-right .door-sub{text-align:left}
-  /* The seal/button - left half shows left line + left half of seal */
-  .door-bottom-row{
-    margin-top:1.5rem;display:flex;align-items:center;gap:0
+  /* Center seal - spans across both doors as a single element */
+  .door-seal-wrap{
+    position:absolute;left:50%;bottom:20%;transform:translateX(-50%);
+    z-index:10;display:flex;align-items:center;gap:1.2rem;
+    pointer-events:none
   }
-  .door-left .door-bottom-row{justify-content:flex-end}
-  .door-right .door-bottom-row{justify-content:flex-start}
-  .door-seal{
-    border:1px solid rgba(200,150,46,.25);padding:.4rem .8rem;
-    background:rgba(200,150,46,.06);
-    font-size:clamp(.8rem,1.2vw,1.2rem);font-weight:900;
-    color:rgba(200,150,46,.55);letter-spacing:3px;white-space:nowrap;
-    border-radius:8px
-  }
-  .door-line-el{
+  .door-seal-wrap .line{
     width:5vw;max-width:80px;height:1px;
-    background:linear-gradient(90deg,transparent,rgba(200,150,46,.2),transparent)
+    background:linear-gradient(90deg,transparent,rgba(200,150,46,.2),rgba(200,150,46,.25),transparent)
   }
+  .door-seal-btn{
+    border:1px solid rgba(200,150,46,.25);padding:.5rem 1.2rem;
+    background:rgba(200,150,46,.06);
+    font-size:clamp(.85rem,1.3vw,1.3rem);font-weight:900;
+    color:rgba(200,150,46,.55);letter-spacing:4px;white-space:nowrap;
+    border-radius:30px;backdrop-filter:blur(4px)
+  }
+  /* Dragon border patterns */
+  .door-dragon-border{
+    position:absolute;pointer-events:none;z-index:6;
+    background:repeating-linear-gradient(90deg,rgba(200,150,46,.08) 0px,rgba(200,150,46,.08) 4px,transparent 4px,transparent 16px)
+  }
+  .door-dragon-border.top{left:12px;right:12px;top:6px;height:4px}
+  .door-dragon-border.bottom{left:12px;right:12px;bottom:6px;height:4px}
+  .door-dragon-border.left{left:6px;top:12px;bottom:12px;width:4px;
+    background:repeating-linear-gradient(180deg,rgba(200,150,46,.08) 0px,rgba(200,150,46,.08) 4px,transparent 4px,transparent 16px)}
+  .door-dragon-border.right{right:6px;top:12px;bottom:12px;width:4px;
+    background:repeating-linear-gradient(180deg,rgba(200,150,46,.08) 0px,rgba(200,150,46,.08) 4px,transparent 4px,transparent 16px)}
   /* Hint text at bottom of the door (spans across both halves visually) */
   .door-hint{
     position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:5;
@@ -455,10 +466,10 @@
   @keyframes doorPulse{0%,100%{opacity:.2}50%{opacity:.5}}
   @media(max-width:768px){
     .door-title{font-size:2.2rem}
-    .door-sub{font-size:.55rem;letter-spacing:4px}
-    .door-seal{font-size:.65rem;padding:.3rem .5rem}
-    .door-line-el{width:3vw}
-    .door-hint{font-size:.55rem;bottom:1.5rem;letter-spacing:3px}
+    .door-sub{font-size:.5rem;letter-spacing:4px}
+    .door-seal-btn{font-size:.7rem;padding:.35rem .7rem}
+    .door-seal-wrap{gap:.6rem}
+    .door-hint{font-size:.5rem;bottom:1.5rem;letter-spacing:3px}
     .nav-links{display:none}
     .bio-grid{grid-template-columns:1fr}
     .bio-photo{max-width:320px;margin:0 auto}
@@ -487,11 +498,7 @@
     <div class="door-inner">
       <div class="door-text-wrap">
         <div class="door-title">MULA</div>
-        <div class="door-sub">永 玄 大 典</div>
-        <div class="door-bottom-row">
-          <span class="door-line-el"></span>
-          <span class="door-seal">☰ 点击</span>
-        </div>
+        <div class="door-sub">永 玄 大 典  ·</div>
       </div>
     </div>
   </div>
@@ -507,15 +514,20 @@
     <div class="door-inner">
       <div class="door-text-wrap">
         <div class="door-title">SAKEE</div>
-        <div class="door-sub">THE OMNI ORACLE</div>
-        <div class="door-bottom-row">
-          <span class="door-seal">进入 ☰</span>
-          <span class="door-line-el"></span>
-        </div>
+        <div class="door-sub">全 球 发 行</div>
       </div>
     </div>
   </div>
-  <div class="door-hint">⟡ 点击任意处开启 ⟡</div>
+  <div class="door-dragon-border top"></div>
+  <div class="door-dragon-border bottom"></div>
+  <div class="door-dragon-border left"></div>
+  <div class="door-dragon-border right"></div>
+  <div class="door-seal-wrap">
+    <span class="line"></span>
+    <span class="door-seal-btn">☰ 点击进入 ☰</span>
+    <span class="line"></span>
+  </div>
+  <div class="door-hint">点击封面开启</div>
 </div>
 
 
