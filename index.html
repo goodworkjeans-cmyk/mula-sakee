@@ -427,18 +427,13 @@
     filter:drop-shadow(0 4px 30px rgba(200,150,46,.15));
     line-height:1.15
   }
-  .door-left .door-title{text-align:right}
-  .door-right .door-title{text-align:left}
-  /* Left: "MULA" right-aligned, Right: "SAKEE" left-aligned */
   .door-sub{
     font-size:clamp(.65rem,1.1vw,.9rem);letter-spacing:6px;
     color:rgba(200,150,46,.4);margin-top:.8rem;font-weight:400
   }
-  .door-left .door-sub{text-align:right}
-  .door-right .door-sub{text-align:left}
-  /* Center seal + subtitle - fade out when door opens */
+  /* Center elements - fade out when door opens */
   .door-center-elements{
-    position:absolute;left:50%;top:58%;transform:translate(-50%,-50%);
+    position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);
     z-index:10;display:flex;flex-direction:column;align-items:center;
     pointer-events:none;gap:.8rem;
     transition:opacity .4s ease .1s
@@ -516,7 +511,6 @@
     <div class="gold-band b"></div>
     <div class="door-inner">
       <div class="door-text-wrap">
-        <div class="door-title">MULA</div>
       </div>
     </div>
   </div>
@@ -531,7 +525,6 @@
     <div class="gold-band b"></div>
     <div class="door-inner">
       <div class="door-text-wrap">
-        <div class="door-title">SAKEE</div>
       </div>
     </div>
   </div>
@@ -540,6 +533,7 @@
   <div class="door-dragon-border left"></div>
   <div class="door-dragon-border right"></div>
   <div class="door-center-elements">
+    <div class="door-title" style="text-align:center">MULA SAKEE</div>
     <div class="door-sub" style="text-align:center;letter-spacing:8px">永 玄 大 典  ·  全 球 发 行</div>
     <div class="door-seal-wrap">
       <span class="line"></span>
