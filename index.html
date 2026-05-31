@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head><script>history.scrollRestoration="manual";window.scrollTo(0,0)
+TYPE html>
+<html lang="zh-CN">
+<head><script>history.scrollRestoration="manual";window.scrollTo(0,0)
 // Catherine Tour
 (function(){
   var STORAGE_KEY = "catherine_tour";
@@ -371,28 +374,7 @@
   .rec-info{padding:.8rem 1rem}
   .rec-name{font-weight:700;font-size:.9rem;margin-bottom:.2rem}
   .rec-album{font-size:.75rem;color:var(--text-dim)}
-  /* ─── CATHERINE TOUR ─── */
-  .ct-form{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:1.5rem;align-items:center}
-  .ct-form input{height:42px;padding:.5rem 1rem;border-radius:10px;border:1px solid rgba(168,85,247,.25);background:rgba(18,14,26,.8);color:var(--text);font-size:.85rem;font-family:inherit}
-  .ct-form input[type=date]{color-scheme:dark;width:160px}
-  .ct-city-wrap{position:relative}
-  .ct-city-wrap input{width:180px}
-  .ct-city-suggestions{position:absolute;top:100%;left:0;right:0;z-index:10;max-height:180px;overflow-y:auto;background:rgba(18,14,26,.95);border:1px solid rgba(168,85,247,.2);border-radius:10px;display:none}
-  .ct-city-suggestions.show{display:block}
-  .ct-city-suggestions div{padding:.5rem 1rem;font-size:.8rem;color:var(--text-dim);cursor:pointer}
-  .ct-city-suggestions div:hover{background:rgba(168,85,247,.15);color:var(--text)}
-  .ct-submit{height:42px;padding:0 1.5rem;border-radius:10px;border:none;cursor:pointer;background:linear-gradient(135deg,var(--purple-light),var(--pink));color:#fff;font-size:.85rem;font-weight:700;font-family:inherit;transition:opacity .3s,transform .3s}
-  .ct-submit:hover{opacity:.9;transform:translateY(-1px)}
-  .ct-list{display:flex;flex-direction:column;gap:.5rem}
-  .ct-item{display:flex;align-items:center;justify-content:space-between;padding:.7rem 1.2rem;border-radius:12px;background:linear-gradient(135deg,rgba(30,15,55,.4),rgba(14,10,22,.9));border:1px solid rgba(168,85,247,.12);font-size:.9rem;transition:opacity .3s,transform .3s,box-shadow .3s,border-color .3s}
-  .ct-item:hover{border-color:rgba(168,85,247,.25)}
-  .ct-item-info{display:flex;align-items:center;gap:1rem}
-  .ct-date{color:var(--pink);font-weight:700;font-size:.85rem}
-  .ct-city-name{color:var(--text-dim)}
-  .ct-del{background:none;border:none;color:rgba(168,85,247,.3);cursor:pointer;font-size:1.1rem;padding:.2rem .4rem;border-radius:50%;transition:color .3s}
-  .ct-del:hover{color:rgba(244,114,182,.6)}
-  .ct-empty{text-align:center;padding:2rem;color:var(--text-dim);font-size:.85rem}
-  .lyrics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+    .lyrics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
   .lyric-card{
     padding:2rem;border-radius:20px;position:relative;
     background:linear-gradient(160deg,rgba(30,15,55,.5),rgba(14,10,22,.95));
@@ -841,24 +823,6 @@
     <div class="rec-card"><div class="rec-cover"><span>💎</span></div><div class="rec-info"><div class="rec-name">Goyard Feast</div><div class="rec-album">SAINT JUICE</div></div></div>
   </div>
 
-<!-- ─── CATHERINE TOUR ─── -->
-<section id="ctour">
-  <h2 class="section-title reveal"><span></span> Catherine Tour</h2>
-  <div class="reveal">
-    <div class="ct-form">
-      <input type="date" id="ctDate" placeholder="日期">
-      <div class="ct-city-wrap">
-        <input type="text" id="ctCity" placeholder="城市名称" autocomplete="off">
-        <div class="ct-city-suggestions" id="ctSuggestions"></div>
-      </div>
-      <button class="ct-submit" id="ctSubmit">添加记录</button>
-    </div>
-    <div class="ct-list" id="ctList">
-      <div class="ct-empty">暂无记录，添加第一条巡演记忆吧</div>
-    </div>
-  </div>
-</section>
-</section>
 <!-- ── TOUR ── -->
 <section id="tour">
   <h2 class="section-title reveal"><span></span> 2026 National Tour</h2>
@@ -940,7 +904,7 @@
   <p>Digi Ghetto · Republic Records</p>
   <p style="margin-top:1rem;opacity:.5;">Mula Sakee © 2026</p>
   <p style="margin-top:1.5rem;font-size:1.1rem;font-weight:700;letter-spacing:2px;background:linear-gradient(90deg,#c084fc,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Made by <strong style="color:#e9d5ff;-webkit-text-fill-color:#e9d5ff">Goodwork</strong> for <strong style="color:#e9d5ff;-webkit-text-fill-color:#e9d5ff">Catherine</strong></p>
-	  <p style="margin-top:.8rem;font-size:.65rem;opacity:.25;letter-spacing:2px">v4.17.31</p>
+	  <p style="margin-top:.8rem;font-size:.65rem;opacity:.25;letter-spacing:2px">v4.17.32</p>
 </footer>
 
 <!-- ── MUSIC CONTROL ── -->
