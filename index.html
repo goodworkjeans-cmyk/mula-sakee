@@ -884,7 +884,7 @@ var playing=false;
 bgm.onplay=function(){bgm.muted=false};
 ctrl.onclick=function(e){
   e.preventDefault();
-  if(playing){bgm.pause();ctrl.classList.remove('paused');void ctrl.offsetWidth;ctrl.classList.add('paused');playing=false;document.querySelector('.music-hint').style.animation='hintFade .5s ease forwards'}
+  if(playing){bgm.pause();ctrl.classList.remove('paused');void ctrl.offsetWidth;ctrl.classList.add('paused');playing=false;document.querySelector('.music-hint').style.animation='hintFade 2s ease forwards'}
   else{ctrl.classList.remove('paused');bgm.play();ctrl.classList.add('playing');playing=true;document.querySelector('.music-hint').style.animation=''}
 };
 </script>
