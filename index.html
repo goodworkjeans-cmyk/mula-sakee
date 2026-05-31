@@ -369,9 +369,14 @@ TYPE html>
   /* ─── RECOMMENDED SONGS ─── */
 
   /* ─── PHOTO WALL ─── */
-  .photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem}
+  .photo-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:.5rem}
     .photo-item{overflow:hidden;border-radius:12px;border:1px solid rgba(168,85,247,.15);background:linear-gradient(135deg,#1a0533,#4c1d95);transition:transform .3s,border-color .3s}
   .photo-item{aspect-ratio:1/1}
+  .pw-item{aspect-ratio:1/1;overflow:hidden;border-radius:10px;border:1px solid rgba(168,85,247,.12);background:linear-gradient(135deg,#1a0533,#4c1d95);transition:transform .3s,border-color .3s}
+  .pw-item img{width:100%;height:100%;object-fit:cover;display:block}
+  .pw-item:hover{transform:scale(1.03);border-color:rgba(244,114,182,.3)}
+  .pw-big{grid-column:span 2;grid-row:span 2}
+  .pw-med{grid-column:span 2;grid-row:span 1}
   .photo-item:hover{transform:scale(1.02);border-color:rgba(244,114,182,.3)}
   .photo-item img{width:100%;height:100%;object-fit:cover;display:block}
   .photo-item{grid-column:span 1;grid-row:span 1}
@@ -585,7 +590,8 @@ TYPE html>
     section{padding:3rem 1.2rem}
     .bio-grid{grid-template-columns:1fr}
     .bio-photo{max-width:100%;margin:0 auto}
-    .albums-grid,.style-grid,.lyrics-grid,.rec-grid,.photo-grid{grid-template-columns:1fr}
+    .albums-grid,.style-grid,.lyrics-grid,.rec-grid{grid-template-columns:1fr}
+    .photo-grid{grid-template-columns:repeat(2,1fr)}
     .albums-grid{gap:1rem}
     .album-inner{padding:1rem}
     .hero h1{font-size:2.5rem}
@@ -836,6 +842,30 @@ TYPE html>
 <section id="photo">
   <h2 class="section-title reveal"><span></span> Album Photo</h2>
   <div class="photo-grid reveal">
+    <div class="pw-item pw-big"><img src="微信图片_20260531231951_438_17.jpg" alt="1"></div>
+    <div class="pw-item pw-sml"><img src="微信图片_20260531231952_439_17.jpg" alt="2"></div>
+    <div class="pw-item pw-sml"><img src="微信图片_20260531231953_440_17.png" alt="3"></div>
+    <div class="pw-item pw-sml"><img src="微信图片_20260531231956_441_17.jpg" alt="4"></div>
+    <div class="pw-item pw-sml"><img src="微信图片_20260531231957_442_17.jpg" alt="5"></div>
+    <div class="pw-item pw-sml"><img src="微信图片_20260531231958_443_17.jpg" alt="6"></div>
+    <div class="pw-item pw-sml"><img src="微信图片_20260531231959_444_17.jpg" alt="7"></div>
+    <div class="pw-item pw-sml"><img src="微信图片_20260531232004_445_17.jpg" alt="8"></div>
+    <div class="pw-item pw-big"><img src="微信图片_20260531232005_446_17.png" alt="9"></div>
+    <div class="pw-item pw-sml"><img src="微信图片_20260531232006_447_17.jpg" alt="10"></div>
+    <div class="pw-item pw-sml"><img src="微信图片_20260531232007_448_17.jpg" alt="11"></div>
+    <div class="pw-item pw-sml"><img src="微信图片_20260531232008_449_17.jpg" alt="12"></div>
+    <div class="pw-item pw-sml"><img src="微信图片_20260531232010_450_17.jpg" alt="13"></div>
+    <div class="pw-item pw-sml"><img src="微信图片_20260531232011_451_17.jpg" alt="14"></div>
+    <div class="pw-item pw-sml"><img src="微信图片_20260531232012_452_17.jpg" alt="15"></div>
+    <div class="pw-item pw-sml"><img src="微信图片_20260531232017_453_17.jpg" alt="16"></div>
+    <div class="pw-item pw-sml"><img src="微信图片_20260531232019_454_17.jpg" alt="17"></div>
+    <div class="pw-item pw-big"><img src="微信图片_20260531232021_455_17.jpg" alt="18"></div>
+    <div class="pw-item pw-med"><img src="微信图片_20260531232024_456_17.jpg" alt="19"></div>
+    <div class="pw-item pw-sml"><img src="微信图片_20260531232026_457_17.jpg" alt="20"></div>
+    <div class="pw-item pw-sml"><img src="微信图片_20260531232029_458_17.jpg" alt="21"></div>
+    <div class="pw-item pw-sml"><img src="微信图片_20260531232029_459_17.jpg" alt="22"></div>
+    <div class="pw-item pw-sml"><img src="微信图片_20260531232032_460_17.png" alt="23"></div>
+    <div class="pw-item pw-sml"><img src="微信图片_20260531232037_461_17.jpg" alt="24"></div>
   </div>
 </section>
 
