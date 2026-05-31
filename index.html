@@ -922,6 +922,7 @@ TYPE html>
 </div>
 
 <script>
+window.scrollTo(0,0);
 const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('show');observer.unobserve(entry.target)}})},{threshold:.15})
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))
 const topBtn=document.getElementById('backToTop')
@@ -962,7 +963,8 @@ ctrl.onclick=function(e){
   if(playing){bgm.pause();ctrl.classList.remove('paused');void ctrl.offsetWidth;ctrl.classList.add('paused');playing=false;document.querySelector('.music-hint').style.transition='opacity 2s ease';document.querySelector('.music-hint').style.opacity='0'}
   else{ctrl.classList.remove('paused');bgm.play();ctrl.classList.add('playing');playing=true;document.querySelector('.music-hint').style.transition='opacity .3s ease';document.querySelector('.music-hint').style.opacity='1'}
 };
-</script>
+
+window.addEventListener(load,function(){setTimeout(function(){window.scrollTo(0,0)},10)});</script>
 
 
 </body>
