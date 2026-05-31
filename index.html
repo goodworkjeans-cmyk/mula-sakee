@@ -369,9 +369,13 @@ TYPE html>
   /* ─── RECOMMENDED SONGS ─── */
 
   /* ─── PHOTO WALL ─── */
-  .photo-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:.5rem}
+  .photo-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:.4rem}
     .photo-item{overflow:hidden;border-radius:12px;border:1px solid rgba(168,85,247,.15);background:linear-gradient(135deg,#1a0533,#4c1d95);transition:transform .3s,border-color .3s}
   .photo-item{aspect-ratio:1/1}
+  .pw-sml{aspect-ratio:1/1;overflow:hidden;border-radius:8px;border:1px solid rgba(168,85,247,.1);background:linear-gradient(135deg,#1a0533,#4c1d95);transition:transform .3s,border-color .3s}
+  .pw-sml img,.pw-big img{width:100%;height:100%;object-fit:cover;display:block}
+  .pw-sml:hover,.pw-big:hover{transform:scale(1.02);border-color:rgba(244,114,182,.25)}
+  .pw-big{aspect-ratio:1/1;overflow:hidden;border-radius:8px;border:1px solid rgba(168,85,247,.1);background:linear-gradient(135deg,#1a0533,#4c1d95);grid-column:span 2;grid-row:span 2;transition:transform .3s,border-color .3s}
   .pw-item{aspect-ratio:1/1;overflow:hidden;border-radius:10px;border:1px solid rgba(168,85,247,.12);background:linear-gradient(135deg,#1a0533,#4c1d95);transition:transform .3s,border-color .3s}
   .pw-item img{width:100%;height:100%;object-fit:cover;display:block}
   .pw-item:hover{transform:scale(1.03);border-color:rgba(244,114,182,.3)}
