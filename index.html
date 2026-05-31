@@ -448,27 +448,27 @@
   .door-left .door-text-wrap{text-align:right;padding-right:0;width:100%;padding-left:4vw}
   .door-right .door-text-wrap{text-align:left;padding-left:0;width:100%;padding-right:4vw}
   .door-title{
-    font-size:clamp(3rem,6vw,6.5rem);font-weight:900;letter-spacing:10px;
+    font-size:clamp(3.5rem,7vw,7.5rem);font-weight:900;letter-spacing:12px;
     background:linear-gradient(180deg,#f5e6b8 10%,#c8962e 70%,#8a6510);
     -webkit-background-clip:text;-webkit-text-fill-color:transparent;
     filter:drop-shadow(0 4px 30px rgba(200,150,46,.15));
     line-height:1.15
   }
   .door-sub{
-    font-size:clamp(.65rem,1.1vw,.9rem);letter-spacing:6px;
+    font-size:clamp(.8rem,1.3vw,1.1rem);letter-spacing:8px;
     color:rgba(200,150,46,.4);margin-top:.8rem;font-weight:400
   }
   /* Center elements - fade out when door opens */
   .door-center-elements{
-    position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);
+    position:absolute;left:calc(50% + 20px);top:45%;transform:translate(-50%,-50%);
     z-index:10;display:flex;flex-direction:column;align-items:center;
     pointer-events:none;gap:.8rem;
     transition:opacity .4s ease .1s
   }
   .door-open .door-center-elements{opacity:0}
   .door-blink{
-    font-size:clamp(.7rem,1.1vw,1rem);font-weight:400;
-    color:rgba(200,150,46,.5);letter-spacing:4px;
+    font-size:clamp(.8rem,1.3vw,1.1rem);font-weight:400;
+    color:rgba(200,150,46,.5);letter-spacing:5px;
     animation:blink 1.5s ease-in-out infinite
   }
   @keyframes blink{0%,100%{opacity:.25}50%{opacity:.8}}
@@ -486,15 +486,15 @@
   /* Hint text at bottom of the door (spans across both halves visually) */
   .door-credit{
     position:absolute;bottom:4.5rem;left:50%;transform:translateX(-50%);
-    z-index:5;font-size:.7rem;letter-spacing:3px;
-    color:rgba(200,150,46,.3);white-space:nowrap;pointer-events:none;
-    transition:opacity .4s ease .1s
+    z-index:5;font-size:.85rem;letter-spacing:4px;
+    color:rgba(200,150,46,.5);white-space:nowrap;pointer-events:none;
+    transition:opacity .4s ease .1s;font-weight:600
   }
   .door-open .door-credit{opacity:0}
   @media(max-width:768px){
-    .door-title{font-size:2.2rem}
-    .door-sub{font-size:.5rem;letter-spacing:4px}
-    .door-blink{font-size:.55rem}
+    .door-title{font-size:2.8rem}
+    .door-sub{font-size:.65rem;letter-spacing:5px}
+    .door-blink{font-size:.65rem}
     .door-center-elements{top:56%}
     .nav-links{display:none}
     section{padding:3rem 1.2rem}
