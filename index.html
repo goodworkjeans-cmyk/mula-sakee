@@ -119,6 +119,7 @@
   .scroll-hint span{font-size:.75rem;color:var(--pink);letter-spacing:3px;opacity:.7}
   @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
   @keyframes mcSpin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+  @keyframes hintFade{to{opacity:0}}
 
   /* ─── FLOATING ACTIONS ─── */
   .float-actions{position:fixed;bottom:2rem;right:2rem;z-index:99;display:flex;flex-direction:column;gap:.75rem}
@@ -160,11 +161,8 @@
     transform:translateX(-50%);
     font-size:.85rem;letter-spacing:3px;color:rgba(168,85,247,.5);
     line-height:1.5;pointer-events:none;text-align:center;
-    transition:opacity .5s ease;opacity:1
+    animation:hintFade 3.5s ease 19s forwards;opacity:1
   }
-  .music-hint.blink{animation:hintPulse 2.5s ease-in-out infinite}
-  .music-hint.hide{opacity:0!important;animation:none}
-  @keyframes hintPulse{0%,100%{opacity:.6}50%{opacity:.85}}
   .float-top{opacity:0;pointer-events:none}
   .float-top.show{opacity:1;pointer-events:auto}
 
@@ -840,7 +838,6 @@
     <img src="永玄大典.jpg" alt="永玄大典">
   </span>
 </button>
-<div class="music-hint blink" id="musicHint"><span class="hint-l1">点击下方</span><br><span class="hint-l2">暂停播放</span></div>
 <!-- ── FLOATING BUTTONS ── -->
 <div class="float-actions">
   <button class="float-btn float-top" id="backToTop" title="回到顶部"><span class="arrow">↑</span></button>
@@ -891,4 +888,4 @@ ctrl.onclick=function(e){
 
 
 </body>
-</html>
+</style>
