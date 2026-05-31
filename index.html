@@ -160,9 +160,11 @@
     transform:translateX(-50%);
     font-size:.85rem;letter-spacing:3px;color:rgba(168,85,247,.5);
     line-height:1.5;pointer-events:none;text-align:center;
-    animation:hintFade 3.5s ease 19s forwards;opacity:1
+    transition:opacity .5s ease;opacity:1
   }
-  @keyframes hintFade{to{opacity:0}}
+  .music-hint.blink{animation:hintPulse 2s ease-in-out infinite}
+  .music-hint.hide{opacity:0}
+  @keyframes hintPulse{0%,100%{opacity:.4}50%{opacity:1}}
   .float-top{opacity:0;pointer-events:none}
   .float-top.show{opacity:1;pointer-events:auto}
 
@@ -838,7 +840,7 @@
     <img src="永玄大典.jpg" alt="永玄大典">
   </span>
 </button>
-<div class="music-hint"><span class="hint-l1">点击下方</span><br><span class="hint-l2">暂停播放</span></div>
+<div class="music-hint blink" id="musicHint"><span class="hint-l1">点击下方</span><br><span class="hint-l2">暂停播放</span></div>
 <!-- ── FLOATING BUTTONS ── -->
 <div class="float-actions">
   <button class="float-btn float-top" id="backToTop" title="回到顶部"><span class="arrow">↑</span></button>
