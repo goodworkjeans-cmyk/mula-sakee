@@ -369,12 +369,12 @@ TYPE html>
   /* ─── RECOMMENDED SONGS ─── */
 
   /* ─── PHOTO WALL ─── */
-  .photo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;grid-auto-rows:minmax(100px,auto)}
+  .photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem}
     .photo-item{overflow:hidden;border-radius:12px;border:1px solid rgba(168,85,247,.15);background:linear-gradient(135deg,#1a0533,#4c1d95);transition:transform .3s,border-color .3s}
+  .photo-item{aspect-ratio:1/1}
   .photo-item:hover{transform:scale(1.02);border-color:rgba(244,114,182,.3)}
   .photo-item img{width:100%;height:100%;object-fit:cover;display:block}
-  .ph-1{grid-column:span 2;grid-row:span 2}
-  .ph-2{grid-column:span 1;grid-row:span 1}
+  .photo-item{grid-column:span 1;grid-row:span 1}
   .rec-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1.2rem}
   .rec-card{border-radius:16px;overflow:hidden;background:linear-gradient(160deg,rgba(30,15,55,.5),rgba(14,10,22,.95));border:1px solid rgba(168,85,247,.15);transition:opacity .3s,transform .3s,box-shadow .3s,border-color .3s}
   .rec-card:hover{transform:translateY(-4px);border-color:rgba(244,114,182,.3);box-shadow:0 6px 30px rgba(124,58,237,.15),0 0 25px rgba(244,114,182,.07)}
@@ -836,12 +836,12 @@ TYPE html>
 <section id="photo">
   <h2 class="section-title reveal"><span></span> Photo</h2>
   <div class="photo-grid reveal">
-    <div class="photo-item ph-1"><img src="1.png" alt="1"></div>
-    <div class="photo-item ph-2"><img src="2.png" alt="2"></div>
-    <div class="photo-item ph-2"><img src="3.png" alt="3"></div>
-    <div class="photo-item ph-2"><img src="4.jpg" alt="4"></div>
-    <div class="photo-item ph-2"><img src="5.jpg" alt="5"></div>
-    <div class="photo-item ph-2"><img src="6.png" alt="6"></div>
+    <div class="photo-item"><img src="1.png" alt="1"></div>
+    <div class="photo-item"><img src="2.png" alt="2"></div>
+    <div class="photo-item"><img src="3.png" alt="3"></div>
+    <div class="photo-item"><img src="4.jpg" alt="4"></div>
+    <div class="photo-item"><img src="5.jpg" alt="5"></div>
+    <div class="photo-item"><img src="6.png" alt="6"></div>
   </div>
 </section>
 
