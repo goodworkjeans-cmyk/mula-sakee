@@ -1,6 +1,81 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head><script>history.scrollRestoration="manual";window.scrollTo(0,0)</script>
+<head><script>history.scrollRestoration="manual";window.scrollTo(0,0)
+// Catherine Tour
+(function(){
+  var STORAGE_KEY = "catherine_tour";
+  var cities = ["北京","上海","广州","深圳","成都","重庆","杭州","南京","武汉","西安","苏州","天津","青岛","长沙","郑州","大连","厦门","宁波","昆明","沈阳","济南","福州","合肥","哈尔滨","长春","石家庄","贵阳","南宁","海口","呼和浩特","太原","兰州","乌鲁木齐","拉萨","银川","西宁","南昌","珠海","佛山","东莞"];
+  var form = document.getElementById("ctSubmit");
+  var list = document.getElementById("ctList");
+  var dateInput = document.getElementById("ctDate");
+  var cityInput = document.getElementById("ctCity");
+  var suggBox = document.getElementById("ctSuggestions");
+  
+  function loadData(){
+    var data;
+    try { data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"); } catch(e) { data = []; }
+    return data;
+  }
+  function saveData(data){
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    renderList(data);
+  }
+  function renderList(data){
+    list.innerHTML = "";
+    if(data.length === 0){
+      list.innerHTML = "<div class="ct-empty">暂无记录，添加第一条巡演记忆吧</div>";
+      return;
+    }
+    data.sort(function(a,b){return new Date(b.date) - new Date(a.date);});
+    data.forEach(function(item, idx){
+      var el = document.createElement("div");
+      el.className = "ct-item";
+      el.innerHTML = "<div class="ct-item-info"><span class="ct-date">"+item.date+"</span><span class="ct-city-name">"+item.city+"</span></div><button class="ct-del" data-idx=""+idx+"">×</button>";
+      el.querySelector(".ct-del").onclick = function(e){
+        e.stopPropagation();
+        var d = loadData();
+        d = d.filter(function(x){return !(x.date===item.date && x.city===item.city);});
+        saveData(d);
+      };
+      list.appendChild(el);
+    });
+  }
+  // City autocomplete
+  var suggestTimer;
+  cityInput.addEventListener("input", function(){
+    clearTimeout(suggestTimer);
+    suggestTimer = setTimeout(function(){
+      var val = cityInput.value.trim();
+      suggBox.innerHTML = "";
+      if(!val){suggBox.classList.remove("show");return;}
+      var matches = cities.filter(function(c){return c.indexOf(val)===0 || c.indexOf(val)>0;});
+      if(matches.length === 0){suggBox.classList.remove("show");return;}
+      matches.slice(0,8).forEach(function(c){
+        var d = document.createElement("div");
+        d.textContent = c;
+        d.onclick = function(){cityInput.value = c;suggBox.classList.remove("show");};
+        suggBox.appendChild(d);
+      });
+      suggBox.classList.add("show");
+    }, 150);
+  });
+  document.addEventListener("click", function(e){
+    if(!cityInput.contains(e.target) && !suggBox.contains(e.target))suggBox.classList.remove("show");
+  });
+  form.onclick = function(){
+    var date = dateInput.value;
+    var city = cityInput.value.trim();
+    if(!date || !city) return;
+    var data = loadData();
+    data.push({date:date, city:city});
+    saveData(data);
+    dateInput.value = "";
+    cityInput.value = "";
+  };
+  renderList(loadData());
+})();
+
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MULA SAKEE</title>
@@ -296,6 +371,27 @@
   .rec-info{padding:.8rem 1rem}
   .rec-name{font-weight:700;font-size:.9rem;margin-bottom:.2rem}
   .rec-album{font-size:.75rem;color:var(--text-dim)}
+  /* ─── CATHERINE TOUR ─── */
+  .ct-form{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:1.5rem;align-items:center}
+  .ct-form input{height:42px;padding:.5rem 1rem;border-radius:10px;border:1px solid rgba(168,85,247,.25);background:rgba(18,14,26,.8);color:var(--text);font-size:.85rem;font-family:inherit}
+  .ct-form input[type=date]{color-scheme:dark;width:160px}
+  .ct-city-wrap{position:relative}
+  .ct-city-wrap input{width:180px}
+  .ct-city-suggestions{position:absolute;top:100%;left:0;right:0;z-index:10;max-height:180px;overflow-y:auto;background:rgba(18,14,26,.95);border:1px solid rgba(168,85,247,.2);border-radius:10px;display:none}
+  .ct-city-suggestions.show{display:block}
+  .ct-city-suggestions div{padding:.5rem 1rem;font-size:.8rem;color:var(--text-dim);cursor:pointer}
+  .ct-city-suggestions div:hover{background:rgba(168,85,247,.15);color:var(--text)}
+  .ct-submit{height:42px;padding:0 1.5rem;border-radius:10px;border:none;cursor:pointer;background:linear-gradient(135deg,var(--purple-light),var(--pink));color:#fff;font-size:.85rem;font-weight:700;font-family:inherit;transition:opacity .3s,transform .3s}
+  .ct-submit:hover{opacity:.9;transform:translateY(-1px)}
+  .ct-list{display:flex;flex-direction:column;gap:.5rem}
+  .ct-item{display:flex;align-items:center;justify-content:space-between;padding:.7rem 1.2rem;border-radius:12px;background:linear-gradient(135deg,rgba(30,15,55,.4),rgba(14,10,22,.9));border:1px solid rgba(168,85,247,.12);font-size:.9rem;transition:opacity .3s,transform .3s,box-shadow .3s,border-color .3s}
+  .ct-item:hover{border-color:rgba(168,85,247,.25)}
+  .ct-item-info{display:flex;align-items:center;gap:1rem}
+  .ct-date{color:var(--pink);font-weight:700;font-size:.85rem}
+  .ct-city-name{color:var(--text-dim)}
+  .ct-del{background:none;border:none;color:rgba(168,85,247,.3);cursor:pointer;font-size:1.1rem;padding:.2rem .4rem;border-radius:50%;transition:color .3s}
+  .ct-del:hover{color:rgba(244,114,182,.6)}
+  .ct-empty{text-align:center;padding:2rem;color:var(--text-dim);font-size:.85rem}
   .lyrics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
   .lyric-card{
     padding:2rem;border-radius:20px;position:relative;
@@ -744,6 +840,24 @@
     <div class="rec-card"><div class="rec-cover"><span>🐉</span></div><div class="rec-info"><div class="rec-name">玄龙兴 扫六合</div><div class="rec-album">永玄大典</div></div></div>
     <div class="rec-card"><div class="rec-cover"><span>💎</span></div><div class="rec-info"><div class="rec-name">Goyard Feast</div><div class="rec-album">SAINT JUICE</div></div></div>
   </div>
+
+<!-- ─── CATHERINE TOUR ─── -->
+<section id="ctour">
+  <h2 class="section-title reveal"><span></span> Catherine Tour</h2>
+  <div class="reveal">
+    <div class="ct-form">
+      <input type="date" id="ctDate" placeholder="日期">
+      <div class="ct-city-wrap">
+        <input type="text" id="ctCity" placeholder="城市名称" autocomplete="off">
+        <div class="ct-city-suggestions" id="ctSuggestions"></div>
+      </div>
+      <button class="ct-submit" id="ctSubmit">添加记录</button>
+    </div>
+    <div class="ct-list" id="ctList">
+      <div class="ct-empty">暂无记录，添加第一条巡演记忆吧</div>
+    </div>
+  </div>
+</section>
 </section>
 <!-- ── TOUR ── -->
 <section id="tour">
@@ -826,7 +940,7 @@
   <p>Digi Ghetto · Republic Records</p>
   <p style="margin-top:1rem;opacity:.5;">Mula Sakee © 2026</p>
   <p style="margin-top:1.5rem;font-size:1.1rem;font-weight:700;letter-spacing:2px;background:linear-gradient(90deg,#c084fc,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Made by <strong style="color:#e9d5ff;-webkit-text-fill-color:#e9d5ff">Goodwork</strong> for <strong style="color:#e9d5ff;-webkit-text-fill-color:#e9d5ff">Catherine</strong></p>
-	  <p style="margin-top:.8rem;font-size:.65rem;opacity:.25;letter-spacing:2px">v4.17.30</p>
+	  <p style="margin-top:.8rem;font-size:.65rem;opacity:.25;letter-spacing:2px">v4.17.31</p>
 </footer>
 
 <!-- ── MUSIC CONTROL ── -->
