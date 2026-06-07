@@ -305,14 +305,7 @@
   .photo-item:hover{transform:scale(1.02);border-color:rgba(244,114,182,.3)}
   .photo-item img{width:100%;height:100%;object-fit:cover;display:block}
   .photo-item{grid-column:span 1;grid-row:span 1}
-  .rec-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1.2rem}
-  .rec-card{border-radius:16px;overflow:hidden;background:linear-gradient(160deg,rgba(30,15,55,.5),rgba(14,10,22,.95));border:1px solid rgba(168,85,247,.15);transition:opacity .3s,transform .3s,box-shadow .3s,border-color .3s}
-  .rec-card:hover{transform:translateY(-4px);border-color:rgba(244,114,182,.3);box-shadow:0 6px 30px rgba(124,58,237,.15),0 0 25px rgba(244,114,182,.07)}
-  .rec-cover{width:100%;aspect-ratio:1/1;overflow:hidden;background:linear-gradient(135deg,#1a0533,#4c1d95);display:flex;align-items:center;justify-content:center;font-size:2rem;color:rgba(200,150,46,.4)}
-  .rec-cover img{width:100%;height:100%;object-fit:cover;display:block}
-  .rec-info{padding:.8rem 1rem}
-  .rec-name{font-weight:700;font-size:.9rem;margin-bottom:.2rem}
-  .rec-album{font-size:.75rem;color:var(--text-dim)}
+  .rec-list{display:flex;flex-direction:column;gap:.6rem}
     .lyrics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
   .lyric-card{
     padding:2rem;border-radius:20px;position:relative;
@@ -755,34 +748,12 @@
 <!-- ─── RECOMMENDED ─── -->
 <section id="rec">
   <h2 class="section-title reveal"><span></span> Catherine's Picks</h2>
-  <div class="rec-grid reveal">
-    <div class="rec-card"><div class="rec-cover"><span>🔥</span></div><div class="rec-info"><div class="rec-name">操作</div><div class="rec-album">SSS</div></div></div>
-    <div class="rec-card"><div class="rec-cover"><span>⚔️</span></div><div class="rec-info"><div class="rec-name">ATHENA</div><div class="rec-album">SSS</div></div></div>
-    <div class="rec-card"><div class="rec-cover"><span>🗡️</span></div><div class="rec-info"><div class="rec-name">倚天屠龙记</div><div class="rec-album">SAINT JUICE</div></div></div>
-    <div class="rec-card"><div class="rec-cover"><span>🐉</span></div><div class="rec-info"><div class="rec-name">玄龙兴 扫六合</div><div class="rec-album">永玄大典</div></div></div>
-    <div class="rec-card"><div class="rec-cover"><span>💎</span></div><div class="rec-info"><div class="rec-name">Goyard Feast</div><div class="rec-album">SAINT JUICE</div></div></div>
-  </div>
-
-<!-- ─── PHOTO ─── -->
-<section id="photo">
-  <h2 class="section-title reveal"><span></span> Album Photo</h2>
-  <div class="photo-grid reveal">
-    <div class="pw-item"><img src="微信图片_20260531231951_438_17.jpg" alt=""></div>
-    <div class="pw-item"><img src="微信图片_20260531231952_439_17.jpg" alt=""></div>
-    <div class="pw-item"><img src="微信图片_20260531231953_440_17.png" alt=""></div>
-    <div class="pw-item"><img src="微信图片_20260531231956_441_17.jpg" alt=""></div>
-    <div class="pw-item"><img src="微信图片_20260531231957_442_17.jpg" alt=""></div>
-    <div class="pw-item"><img src="微信图片_20260531231958_443_17.jpg" alt=""></div>
-    <div class="pw-item"><img src="微信图片_20260531231959_444_17.jpg" alt=""></div>
-    <div class="pw-item"><img src="微信图片_20260531232004_445_17.jpg" alt=""></div>
-    <div class="pw-item"><img src="微信图片_20260531232005_446_17.png" alt=""></div>
-    <div class="pw-item"><img src="微信图片_20260531232006_447_17.jpg" alt=""></div>
-    <div class="pw-item"><img src="微信图片_20260531232007_448_17.jpg" alt=""></div>
-    <div class="pw-item"><img src="微信图片_20260531232008_449_17.jpg" alt=""></div>
-    <div class="pw-item"><img src="微信图片_20260531232010_450_17.jpg" alt=""></div>
-    <div class="pw-item"><img src="微信图片_20260531232011_451_17.jpg" alt=""></div>
-    <div class="pw-item"><img src="微信图片_20260531232012_452_17.jpg" alt=""></div>
-    <div class="pw-item"><img src="微信图片_20260531232017_453_17.jpg" alt=""></div>
+  <div class="rec-list reveal">
+    <div class="rec-row">操作</div>
+    <div class="rec-row">ATHENA</div>
+    <div class="rec-row">倚天屠龙记</div>
+    <div class="rec-row">玄龙兴 扫六合</div>
+    <div class="rec-row">Goyard Feast</div>
   </div>
 </section>
 
@@ -867,7 +838,7 @@
   <p>Digi Ghetto · Republic Records</p>
   <p style="margin-top:1rem;opacity:.5;">Mula Sakee © 2026</p>
   <p style="margin-top:1.5rem;font-size:1.1rem;font-weight:700;letter-spacing:2px;background:linear-gradient(90deg,#c084fc,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Made by <strong style="color:#e9d5ff;-webkit-text-fill-color:#e9d5ff">Goodwork</strong> for <strong style="color:#e9d5ff;-webkit-text-fill-color:#e9d5ff">Catherine</strong></p>
-	  <p style="margin-top:.8rem;font-size:.65rem;opacity:.25;letter-spacing:2px">v4.17.53</p>
+	  <p style="margin-top:.8rem;font-size:.65rem;opacity:.25;letter-spacing:2px">v4.17.54</p>
 </footer>
 
 <!-- ── MUSIC CONTROL ── -->
